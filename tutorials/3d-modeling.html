@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hướng Dẫn Mô Hình 3D | AutoCAD Tutorial</title>
+    <meta name="description" content="Học mô hình 3D với AutoCAD - Hướng dẫn từ cơ bản đến nâng cao">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/glass.css">
+    <link rel="stylesheet" href="../css/loading.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Phần loading -->
+    <div id="loading-screen">
+        <div class="logo-container">
+            <svg id="logo-svg" width="200" height="200" viewBox="0 0 200 200">
+                <!-- Logo sẽ được vẽ bằng JavaScript -->
+            </svg>
+        </div>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
+
+    <!-- Phần header -->
+    <header class="glass-header">
+        <div class="container">
+            <div class="logo">
+                <img src="../images/logo/autocad-logo.svg" alt="Logo AutoCAD Tutorial">
+                <h1>Hướng Dẫn AutoCAD</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Trang Chủ</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="active">Khóa Học <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu glass-effect">
+                            <li><a href="2d-design.html">Thiết Kế 2D</a></li>
+                            <li><a href="3d-modeling.html" class="active">Mô Hình 3D</a></li>
+                            <li><a href="electrical.html">Thiết Kế Điện</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../about.html">Giới Thiệu</a></li>
+                    <li><a href="../contact.html">Liên Hệ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container" style="padding-top: 100px;">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../index.html">Trang Chủ</a></li>
+            <li class="breadcrumb-item"><a href="#">Khóa Học</a></li>
+            <li class="breadcrumb-item active">Mô Hình 3D</li>
+        </ul>
+    </div>
+
+    <!-- Phần nội dung chính -->
+    <div class="tutorial-container container">
+        <!-- Phần sidebar -->
+        <div class="sidebar glass-effect">
+            <h3 class="tutorial-menu-title">Nội dung khóa học</h3>
+            <ul class="tutorial-menu">
+                <li class="menu-category">Phần Cơ Bản</li>
+                <li class="menu-item open">
+                    <a href="#intro">Giới thiệu về mô hình 3D</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#workspace">Không gian làm việc 3D</a>
+                    <ul class="submenu">
+                        <li><a href="#viewports">Cài đặt Viewports</a></li>
+                        <li><a href="#navigation">Điều hướng trong không gian 3D</a></li>
+                        <li><a href="#coordinate-system">Hệ tọa độ 3D</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#primitives">Các đối tượng 3D cơ bản</a>
+                    <ul class="submenu">
+                        <li><a href="#box">Hộp (Box)</a></li>
+                        <li><a href="#cylinder">Hình trụ (Cylinder)</a></li>
+                        <li><a href="#sphere">Hình cầu (Sphere)</a></li>
+                        <li><a href="#cone">Hình nón (Cone)</a></li>
+                        <li><a href="#wedge">Hình nêm (Wedge)</a></li>
+                        <li><a href="#torus">Hình xuyến (Torus)</a></li>
+                    </ul>
+                </li>
+                <li class="menu-category">Phần Nâng Cao</li>
+                <li class="menu-item">
+                    <a href="#complex">Tạo mô hình phức tạp</a>
+                    <ul class="submenu">
+                        <li><a href="#extrude">Lệnh Extrude</a></li>
+                        <li><a href="#revolve">Lệnh Revolve</a></li>
+                        <li><a href="#sweep">Lệnh Sweep</a></li>
+                        <li><a href="#loft">Lệnh Loft</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#boolean">Phép toán Boolean</a>
+                    <ul class="submenu">
+                        <li><a href="#union">Lệnh Union</a></li>
+                        <li><a href="#subtract">Lệnh Subtract</a></li>
+                        <li><a href="#intersect">Lệnh Intersect</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#materials">Vật liệu và ánh sáng</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#rendering">Kết xuất hình ảnh</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#projects">Dự án thực hành</a>
+                    <ul class="submenu">
+                        <li><a href="#project1">Dự án 1: Thiết kế sản phẩm</a></li>
+                        <li><a href="#project2">Dự án 2: Mô hình kiến trúc</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Phần nội dung chính -->
+        <div class="tutorial-content glass-effect fade-in">
+            <h1 id="intro">Hướng Dẫn Mô Hình 3D Với AutoCAD</h1>
+            
+            <p>AutoCAD không chỉ là công cụ thiết kế 2D mạnh mẽ mà còn cung cấp các tính năng toàn diện để tạo và chỉnh sửa các mô hình 3D phức tạp. Trong khóa học này, bạn sẽ học cách sử dụng AutoCAD để tạo ra các mô hình 3D chuyên nghiệp.</p>
+            
+            <p>Mô hình 3D với AutoCAD được ứng dụng rộng rãi trong các ngành công nghiệp như kiến trúc, cơ khí, sản xuất, và thiết kế sản phẩm. Kỹ năng mô hình hóa 3D sẽ giúp bạn thể hiện ý tưởng thiết kế một cách trực quan và chính xác hơn.</p>
+            
+            <h2 id="workspace">Không Gian Làm Việc 3D</h2>
+            
+            <p>Để bắt đầu với mô hình 3D trong AutoCAD, bạn cần làm quen với không gian làm việc 3D và hiểu cách điều hướng trong môi trường này.</p>
+            
+            <h3 id="viewports">Cài đặt Viewports</h3>
+            
+            <p>Viewports (khung nhìn) cho phép bạn xem mô hình từ nhiều góc độ khác nhau cùng một lúc, giúp việc thiết kế 3D trở nên dễ dàng hơn.</p>
+            
+            <div class="code-block">
+                Cách cài đặt viewport:<br>
+                1. Chuyển sang không gian mô hình (Model Space)<br>
+                2. Nhập lệnh VPORTS hoặc -VP<br>
+                3. Chọn cấu hình viewport mong muốn (ví dụ: 3, 4)
+            </div>
+            
+            <div class="tip">
+                <strong>Mẹo:</strong> Cấu hình "Three: Right" rất hữu ích cho thiết kế 3D vì nó hiển thị ba góc nhìn chính: mặt trên, mặt trước và góc nhìn đồng nhất (isometric).
+            </div>
+            
+            
+            <h3 id="navigation">Điều Hướng Trong Không Gian 3D</h3>
+            
+            <p>Điều hướng trong không gian 3D đòi hỏi các kỹ thuật khác so với không gian 2D. Bạn cần biết cách xoay, di chuyển và phóng to/thu nhỏ trong các hướng khác nhau.</p>
+            
+            <div class="code-block">
+                Các phím tắt hữu ích:<br>
+                - 3DORBIT (hoặc nhấn giữ phím Shift + chuột giữa): Xoay góc nhìn<br>
+                - 3DPAN (hoặc nhấn giữ phím Shift + Ctrl + chuột giữa): Di chuyển góc nhìn<br>
+                - 3DZOOM (hoặc cuộn chuột): Phóng to/thu nhỏ
+            </div>
+            
+            <h2 id="primitives">Các Đối Tượng 3D Cơ Bản</h2>
+            
+            <p>AutoCAD cung cấp nhiều công cụ để tạo ra các đối tượng 3D cơ bản, được gọi là "khối nguyên thủy" (primitives).</p>
+            
+            <h3 id="box">Hộp (Box)</h3>
+            
+            <p>Lệnh Box cho phép bạn tạo ra một khối hộp chữ nhật 3D bằng cách xác định các góc đối diện và chiều cao.</p>
+            
+            <div class="code-block">
+                Cách sử dụng:<br>
+                1. Nhập lệnh BOX vào dòng lệnh hoặc chọn từ menu 3D Modeling<br>
+                2. Xác định góc đầu tiên của đáy hộp<br>
+                3. Xác định góc đối diện của đáy hộp<br>
+                4. Nhập chiều cao của hộp hoặc chỉ định bằng chuột
+            </div>
+            
+            <img src="../images/tutorials/3d-box.jpg" alt="Minh họa lệnh Box trong AutoCAD">
+            
+            <h3 id="cylinder">Hình Trụ (Cylinder)</h3>
+            
+            <p>Lệnh Cylinder cho phép bạn tạo ra một hình trụ 3D bằng cách xác định đường tròn đáy và chiều cao.</p>
+            
+            <div class="code-block">
+                Cách sử dụng:<br>
+                1. Nhập lệnh CYLINDER vào dòng lệnh<br>
+                2. Xác định tâm của đáy hình trụ<br>
+                3. Xác định bán kính hoặc đường kính của đáy<br>
+                4. Xác định chiều cao của hình trụ
+            </div>
+            
+            <h3 id="sphere">Hình Cầu (Sphere)</h3>
+            
+            <p>Lệnh Sphere cho phép bạn tạo ra một hình cầu 3D bằng cách xác định tâm và bán kính.</p>
+            
+            <div class="code-block">
+                Cách sử dụng:<br>
+                1. Nhập lệnh SPHERE vào dòng lệnh<br>
+                2. Xác định tâm của hình cầu<br>
+                3. Xác định bán kính hoặc đường kính của hình cầu
+            </div>
+            
+            <h3 id="cone">Hình Nón (Cone)</h3>
+            
+            <p>Lệnh Cone cho phép bạn tạo ra một hình nón 3D bằng cách xác định đáy tròn và đỉnh.</p>
+            
+            <div class="code-block">
+                Cách sử dụng:<br>
+                1. Nhập lệnh CONE vào dòng lệnh<br>
+                2. Xác định tâm của đáy hình nón<br>
+                3. Xác định bán kính hoặc đường kính của đáy<br>
+                4. Xác định chiều cao hoặc vị trí đỉnh của hình nón
+            </div>
+            
+            <h3 id="wedge">Hình Nêm (Wedge)</h3>
+            
+            <p>Lệnh Wedge cho phép bạn tạo ra một hình nêm 3D, tương tự như một hình hộp được cắt theo đường chéo.</p>
+            
+            <div class="code-block">
+                Cách sử dụng:<br>
+                1. Nhập lệnh WEDGE vào dòng lệnh<br>
+                2. Xác định góc đầu tiên của đáy hình nêm<br>
+                3. Xác định góc đối diện của đáy hình nêm<br>
+                4. Xác định chiều cao của hình nêm
+            </div>
+            
+            <h3 id="torus">Hình Xuyến (Torus)</h3>
+            
+            <p>Lệnh Torus cho phép bạn tạo ra một hình xuyến 3D (hình dạng như một chiếc bánh donut) bằng cách xác định bán kính vòng tròn lớn và bán kính ống.</p>
+            
+            <div class="code-block">
+                Cách sử dụng:<br>
+                1. Nhập lệnh TORUS vào dòng lệnh<br>
+                2. Xác định tâm của hình xuyến<br>
+                3. Xác định bán kính của vòng tròn lớn (từ tâm đến tâm ống)<br>
+                4. Xác định bán kính của ống (bán kính mặt cắt)
+            </div>
+            
+            <h2 id="complex">Tạo Mô Hình Phức Tạp</h2>
+            
+            <p>Ngoài các khối cơ bản, AutoCAD còn cung cấp nhiều lệnh mạnh mẽ để tạo ra các mô hình 3D phức tạp hơn.</p>
+            
+            <h3 id="extrude">Lệnh Extrude</h3>
+            
+            <p>Lệnh Extrude cho phép bạn kéo dài một đối tượng 2D thành một đối tượng 3D theo một chiều cao hoặc đường dẫn xác định.</p>
+            
+            <div class="code-block">
+                Cách sử dụng:<br>
+                1. Vẽ một đối tượng 2D đóng kín (như hình tròn, đa giác, v.v.)<br>
+                2. Nhập lệnh EXTRUDE<br>
+                3. Chọn đối tượng cần kéo dài<br>
+                4. Xác định chiều cao hoặc chọn đường dẫn để kéo dài theo
+            </div>
+            
+            <div class="tip">
+                <strong>Mẹo:</strong> Bạn có thể sử dụng tùy chọn "Taper angle" để tạo ra hiệu ứng côn khi kéo dài.
+            </div>
+            
+            <h3 id="revolve">Lệnh Revolve</h3>
+            
+            <p>Lệnh Revolve cho phép bạn xoay một đối tượng 2D quanh một trục để tạo thành một đối tượng 3D.</p>
+            
+            <div class="code-block">
+                Cách sử dụng:<br>
+                1. Vẽ một đối tượng 2D (profile) và một đường thẳng làm trục xoay<br>
+                2. Nhập lệnh REVOLVE<br>
+                3. Chọn đối tượng cần xoay<br>
+                4. Xác định trục xoay (bằng cách chọn 2 điểm hoặc chọn một đối tượng có sẵn)<br>
+                5. Xác định góc xoay (mặc định là 360 độ)
+            </div>
+            
+            <h3 id="sweep">Lệnh Sweep</h3>
+            
+            <p>Lệnh Sweep cho phép bạn kéo dài một đối tượng 2D dọc theo một đường dẫn xác định để tạo thành một đối tượng 3D.</p>
+            
+            <div class="code-block">
+                Cách sử dụng:<br>
+                1. Vẽ một đối tượng 2D (profile) và một đường dẫn<br>
+                2. Nhập lệnh SWEEP<br>
+                3. Chọn đối tượng cần kéo dài<br>
+                4. Chọn đường dẫn
+            </div>
+            
+            <h3 id="loft">Lệnh Loft</h3>
+            
+            <p>Lệnh Loft cho phép bạn tạo ra một đối tượng 3D bằng cách chuyển tiếp giữa hai hoặc nhiều mặt cắt 2D.</p>
+            
+            <div class="code-block">
+                Cách sử dụng:<br>
+                1. Vẽ các mặt cắt 2D tại các vị trí khác nhau trong không gian<br>
+                2. Nhập lệnh LOFT<br>
+                3. Chọn các mặt cắt theo thứ tự từ dưới lên trên<br>
+                4. Nhấn Enter và điều chỉnh các tùy chọn nếu cần
+            </div>
+            
+            <h2 id="boolean">Phép Toán Boolean</h2>
+            
+            <p>Các phép toán Boolean cho phép bạn kết hợp hoặc chỉnh sửa các đối tượng 3D hiện có để tạo ra các hình dạng mới phức tạp hơn.</p>
+            
+            <h3 id="union">Lệnh Union</h3>
+            
+            <p>Lệnh Union cho phép bạn kết hợp hai hoặc nhiều đối tượng 3D thành một đối tượng duy nhất.</p>
+            
+            <div class="code-block">
+                Cách sử dụng:<br>
+                1. Nhập lệnh UNION<br>
+                2. Chọn các đối tượng cần kết hợp<br>
+                3. Nhấn Enter để hoàn thành
+            </div>
+            
+            <h3 id="subtract">Lệnh Subtract</h3>
+            
+            <p>Lệnh Subtract cho phép bạn trừ một hoặc nhiều đối tượng 3D từ một đối tượng khác.</p>
+            
+            <div class="code-block">
+                Cách sử dụng:<br>
+                1. Nhập lệnh SUBTRACT<br>
+                2. Chọn đối tượng cần giữ lại (đối tượng bị trừ từ)<br>
+                3. Nhấn Enter<br>
+                4. Chọn đối tượng cần trừ đi<br>
+                5. Nhấn Enter để hoàn thành
+            </div>
+            
+            <h3 id="intersect">Lệnh Intersect</h3>
+            
+            <p>Lệnh Intersect cho phép bạn tạo ra một đối tượng mới từ phần giao nhau của hai hoặc nhiều đối tượng 3D.</p>
+            
+            <div class="code-block">
+                Cách sử dụng:<br>
+                1. Nhập lệnh INTERSECT<br>
+                2. Chọn tất cả các đối tượng cần lấy phần giao<br>
+                3. Nhấn Enter để hoàn thành
+            </div>
+            
+            <h2 id="materials">Vật Liệu và Ánh Sáng</h2>
+            
+            <p>Để làm cho mô hình 3D của bạn trông thực tế hơn, AutoCAD cho phép bạn áp dụng các vật liệu và thêm ánh sáng vào cảnh.</p>
+            
+            <div class="code-block">
+                Cách áp dụng vật liệu:<br>
+                1. Nhập lệnh MATERIALS hoặc MATBROWSEROPEN để mở Materials Browser<br>
+                2. Chọn một vật liệu từ thư viện<br>
+                3. Kéo và thả vật liệu lên đối tượng hoặc sử dụng lệnh MATERIALATTACH<br>
+                4. Điều chỉnh các thuộc tính của vật liệu nếu cần
+            </div>
+            
+            <div class="code-block">
+                Cách thêm ánh sáng:<br>
+                1. Nhập lệnh LIGHT<br>
+                2. Chọn loại ánh sáng (điểm sáng, ánh sáng định hướng, ánh sáng chiếu sáng)<br>
+                3. Xác định vị trí và hướng của nguồn sáng<br>
+                4. Điều chỉnh cường độ và màu sắc của ánh sáng
+            </div>
+            
+            <h2 id="rendering">Kết Xuất Hình Ảnh</h2>
+            
+            <p>Sau khi hoàn thành mô hình 3D và áp dụng vật liệu cũng như ánh sáng, bạn có thể kết xuất (render) để tạo ra hình ảnh chất lượng cao.</p>
+            
+            <div class="code-block">
+                Cách kết xuất hình ảnh:<br>
+                1. Nhập lệnh RENDER<br>
+                2. Điều chỉnh các cài đặt kết xuất trong hộp thoại Render<br>
+                3. Chọn kích thước đầu ra và độ phân giải<br>
+                4. Nhấn nút Render để bắt đầu quá trình kết xuất<br>
+                5. Lưu hình ảnh kết xuất khi hoàn tất
+            </div>
+            
+            <h2 id="projects">Dự Án Thực Hành</h2>
+            
+            <p>Thực hành là cách tốt nhất để nâng cao kỹ năng mô hình hóa 3D của bạn. Dưới đây là một số dự án thực hành để áp dụng những kiến thức đã học.</p>
+            
+            <h3 id="project1">Dự Án 1: Thiết Kế Sản Phẩm</h3>
+            
+            <p>Trong dự án này, bạn sẽ tạo một mô hình 3D của một sản phẩm đơn giản, như một chiếc cốc, chai nước, hoặc một dụng cụ nhỏ.</p>
+            
+            <div class="code-block">
+                Các bước thực hiện:<br>
+                1. Tạo phác thảo 2D của mặt cắt sản phẩm<br>
+                2. Sử dụng lệnh Revolve hoặc Extrude để tạo hình dạng cơ bản<br>
+                3. Thêm các chi tiết bằng cách sử dụng các lệnh Boolean<br>
+                4. Áp dụng vật liệu và thiết lập ánh sáng<br>
+                5. Kết xuất hình ảnh cuối cùng
+            </div>
+            
+            <h3 id="project2">Dự Án 2: Mô Hình Kiến Trúc</h3>
+            
+            <p>Trong dự án này, bạn sẽ tạo một mô hình 3D đơn giản của một công trình kiến trúc, như một ngôi nhà nhỏ hoặc một tòa nhà văn phòng.</p>
+            
+            <div class="code-block">
+                Các bước thực hiện:<br>
+                1. Tạo mặt bằng 2D của công trình<br>
+                2. Sử dụng lệnh Extrude để tạo tường và các kết cấu chính<br>
+                3. Thêm mái, cửa sổ, cửa ra vào và các chi tiết khác<br>
+                4. Tạo địa hình xung quanh nếu cần<br>
+                5. Áp dụng vật liệu và thiết lập ánh sáng<br>
+                6. Kết xuất hình ảnh hoặc tạo các góc nhìn khác nhau của công trình
+            </div>
+            
+            <div class="tutorial-navigation">
+                <div class="prev-tutorial">
+                    <i class="fas fa-arrow-left"></i>
+                    <a href="2d-design.html">Quay lại: Thiết Kế 2D</a>
+                </div>
+                <div class="next-tutorial">
+                    <a href="electrical.html">Tiếp theo: Thiết Kế Điện</a>
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phần chân trang -->
+    <footer class="glass-effect">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <h3>Về Chúng Tôi</h3>
+                    <p>Cổng thông tin học AutoCAD hàng đầu Việt Nam, cung cấp các khóa học chất lượng cao với nội dung được cập nhật liên tục.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Liên Kết Nhanh</h3>
+                    <ul>
+                        <li><a href="../index.html">Trang Chủ</a></li>
+                        <li><a href="2d-design.html">Thiết Kế 2D</a></li>
+                        <li><a href="3d-modeling.html">Mô Hình 3D</a></li>
+                        <li><a href="electrical.html">Thiết Kế Điện</a></li>
+                        <li><a href="../about.html">Giới Thiệu</a></li>
+                        <li><a href="../contact.html">Liên Hệ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Liên Hệ</h3>
+                    <p><i class="fas fa-envelope"></i> Email: khaiduy2k2@gmail.com</p>
+                 
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/aliofficial17" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.tiktok.com/@khaiduy202" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AliStudio. Tất cả các quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/loading.js"></script>
+</body>
+</html> 

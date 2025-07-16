@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Bài Học | AutoCAD Tutorial</title>
+    <meta name="description" content="Quản lý nội dung bài học - Hướng Dẫn AutoCAD Online">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/loading.css">
+    <link rel="stylesheet" href="../css/glass.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!-- Phần loading -->
+    <div id="loading-screen">
+        <div class="logo-container">
+            <svg id="logo-svg" width="200" height="200" viewBox="0 0 200 200">
+                <!-- Logo sẽ được vẽ bằng JavaScript -->
+            </svg>
+        </div>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
+
+    <!-- Phần header -->
+    <header class="glass-header">
+        <div class="container">
+            <div class="logo">
+                <img src="../images/logo/autocad-logo.svg" alt="Logo AutoCAD Tutorial">
+                <h1>Hướng Dẫn AutoCAD - Admin</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Trang Chủ</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="active">Quản Trị <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu glass-effect">
+                            <li><a href="dashboard.html">Dashboard</a></li>
+                            <li><a href="tutorials.html" class="active">Quản Lý Bài Học</a></li>
+                            <li><a href="users.html">Quản Lý Người Dùng</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button id="logoutBtn" class="glass-btn">Đăng Xuất</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container" style="padding-top: 100px;">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../index.html">Trang Chủ</a></li>
+            <li class="breadcrumb-item"><a href="#">Quản Trị</a></li>
+            <li class="breadcrumb-item active">Quản Lý Bài Học</li>
+        </ul>
+    </div>
+
+    <!-- Phần nội dung chính -->
+    <section class="admin-dashboard fade-in">
+        <div class="container">
+            <h1 class="admin-title">Quản Lý Bài Học</h1>
+            
+            <div class="admin-grid">
+                <!-- Sidebar quản trị -->
+                <div class="admin-sidebar glass-effect">
+                    <div class="admin-profile">
+                        <div class="admin-avatar">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <div class="admin-info">
+                            <h3 id="adminName">Admin</h3>
+                            <p>Quản trị viên</p>
+                        </div>
+                    </div>
+                    
+                    <ul class="admin-menu">
+                        <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li class="active"><a href="tutorials.html"><i class="fas fa-book"></i> Quản Lý Bài Học</a></li>
+                        <li><a href="users.html"><i class="fas fa-users"></i> Quản Lý Người Dùng</a></li>
+                        <li><a href="#" id="siteSettingsBtn"><i class="fas fa-cog"></i> Cài Đặt Website</a></li>
+                        <li><a href="../index.html"><i class="fas fa-external-link-alt"></i> Xem Website</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Nội dung chính -->
+                <div class="admin-content">
+                    <!-- Công cụ quản lý -->
+                    <div class="admin-toolbar glass-effect">
+                        <div class="search-form">
+                            <input type="text" placeholder="Tìm kiếm bài học..." id="searchTutorial">
+                            <button type="button"><i class="fas fa-search"></i></button>
+                        </div>
+                        
+                        <div class="filter-options">
+                            <select id="categoryFilter">
+                                <option value="">Tất cả danh mục</option>
+                                <option value="2d">Thiết Kế 2D</option>
+                                <option value="3d">Mô Hình 3D</option>
+                                <option value="electrical">Thiết Kế Điện</option>
+                            </select>
+                            
+                            <select id="statusFilter">
+                                <option value="">Tất cả trạng thái</option>
+                                <option value="published">Đã xuất bản</option>
+                                <option value="draft">Bản nháp</option>
+                            </select>
+                        </div>
+                        
+                        <button id="addTutorialBtn" class="glass-btn"><i class="fas fa-plus"></i> Thêm Bài Học Mới</button>
+                    </div>
+                    
+                    <!-- Bảng quản lý bài học -->
+                    <div class="tutorials-table glass-effect">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 5%"><input type="checkbox" id="selectAll"></th>
+                                    <th style="width: 40%">Tiêu Đề</th>
+                                    <th style="width: 15%">Danh Mục</th>
+                                    <th style="width: 10%">Lượt Xem</th>
+                                    <th style="width: 15%">Trạng Thái</th>
+                                    <th style="width: 15%">Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tutorialsList">
+                                <tr>
+                                    <td><input type="checkbox" class="tutorial-checkbox"></td>
+                                    <td>Giới thiệu về thiết kế 2D trong AutoCAD</td>
+                                    <td>Thiết Kế 2D</td>
+                                    <td>1,245</td>
+                                    <td><span class="status published">Đã xuất bản</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="edit-btn" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                                            <button class="view-btn" title="Xem"><i class="fas fa-eye"></i></button>
+                                            <button class="delete-btn" title="Xóa"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="tutorial-checkbox"></td>
+                                    <td>Sử dụng các lệnh cơ bản trong AutoCAD</td>
+                                    <td>Thiết Kế 2D</td>
+                                    <td>982</td>
+                                    <td><span class="status published">Đã xuất bản</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="edit-btn" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                                            <button class="view-btn" title="Xem"><i class="fas fa-eye"></i></button>
+                                            <button class="delete-btn" title="Xóa"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="tutorial-checkbox"></td>
+                                    <td>Làm việc với khối 3D cơ bản trong AutoCAD</td>
+                                    <td>Mô Hình 3D</td>
+                                    <td>756</td>
+                                    <td><span class="status published">Đã xuất bản</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="edit-btn" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                                            <button class="view-btn" title="Xem"><i class="fas fa-eye"></i></button>
+                                            <button class="delete-btn" title="Xóa"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="tutorial-checkbox"></td>
+                                    <td>Thiết kế sơ đồ mạch điện với AutoCAD</td>
+                                    <td>Thiết Kế Điện</td>
+                                    <td>589</td>
+                                    <td><span class="status published">Đã xuất bản</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="edit-btn" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                                            <button class="view-btn" title="Xem"><i class="fas fa-eye"></i></button>
+                                            <button class="delete-btn" title="Xóa"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="tutorial-checkbox"></td>
+                                    <td>Kỹ thuật nâng cao trong thiết kế 3D</td>
+                                    <td>Mô Hình 3D</td>
+                                    <td>0</td>
+                                    <td><span class="status draft">Bản nháp</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="edit-btn" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                                            <button class="view-btn" title="Xem"><i class="fas fa-eye"></i></button>
+                                            <button class="delete-btn" title="Xóa"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="tutorial-checkbox"></td>
+                                    <td>Thiết kế hệ thống điện chiếu sáng</td>
+                                    <td>Thiết Kế Điện</td>
+                                    <td>0</td>
+                                    <td><span class="status draft">Bản nháp</span></td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="edit-btn" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                                            <button class="view-btn" title="Xem"><i class="fas fa-eye"></i></button>
+                                            <button class="delete-btn" title="Xóa"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Phân trang -->
+                    <div class="pagination glass-effect">
+                        <button class="page-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    
+                    <!-- Thanh công cụ hàng loạt -->
+                    <div class="bulk-actions glass-effect">
+                        <div class="selected-count">0 bài học đã chọn</div>
+                        <div class="bulk-buttons">
+                            <button class="glass-btn" id="bulkPublish" disabled>Xuất Bản</button>
+                            <button class="glass-btn" id="bulkDraft" disabled>Chuyển Nháp</button>
+                            <button class="glass-btn" id="bulkDelete" disabled>Xóa</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Thêm/Sửa Bài Học -->
+    <div id="tutorialModal" class="modal">
+        <div class="modal-content glass-effect large-modal">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Thêm Bài Học Mới</h2>
+            <form id="tutorialForm">
+                <div class="form-group">
+                    <label for="title">Tiêu Đề Bài Học</label>
+                    <input type="text" id="title" name="title" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="category">Danh Mục</label>
+                        <select id="category" name="category" required>
+                            <option value="">-- Chọn danh mục --</option>
+                            <option value="2d">Thiết Kế 2D</option>
+                            <option value="3d">Mô Hình 3D</option>
+                            <option value="electrical">Thiết Kế Điện</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="status">Trạng Thái</label>
+                        <select id="status" name="status" required>
+                            <option value="draft">Bản nháp</option>
+                            <option value="published">Xuất bản</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="description">Mô Tả Ngắn</label>
+                    <textarea id="description" name="description" rows="3" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="content">Nội Dung Bài Học</label>
+                    <textarea id="content" name="content" rows="12" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="thumbnail">Ảnh Thumbnail</label>
+                    <input type="file" id="thumbnail" name="thumbnail" accept="image/*">
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="glass-btn outline" id="cancelBtn">Hủy</button>
+                    <button type="submit" class="glass-btn" id="saveBtn">Lưu Bài Học</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Cài đặt Website -->
+    <div id="siteSettingsModal" class="modal">
+        <div class="modal-content glass-effect">
+            <span class="close">&times;</span>
+            <h2>Cài Đặt Website</h2>
+            <form id="siteSettingsForm">
+                <div class="form-group">
+                    <label for="siteName">Tên Website</label>
+                    <input type="text" id="siteName" name="siteName" value="Hướng Dẫn AutoCAD" required>
+                </div>
+                <div class="form-group">
+                    <label for="siteDescription">Mô Tả</label>
+                    <textarea id="siteDescription" name="siteDescription" rows="3" required>Học AutoCAD trực tuyến miễn phí với các hướng dẫn chi tiết về thiết kế 2D, mô hình 3D và thiết kế điện</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="contactEmail">Email Liên Hệ</label>
+                    <input type="email" id="contactEmail" name="contactEmail" value="info@autocad-tutorial.vn" required>
+                </div>
+                <div class="form-group">
+                    <label for="primaryColor">Màu Chính</label>
+                    <input type="color" id="primaryColor" name="primaryColor" value="#0078d7">
+                </div>
+                <div class="form-group">
+                    <label for="secondaryColor">Màu Phụ</label>
+                    <input type="color" id="secondaryColor" name="secondaryColor" value="#00a2ff">
+                </div>
+                <button type="submit" class="glass-btn">Lưu Cài Đặt</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Xác nhận xóa -->
+    <div id="deleteConfirmModal" class="modal">
+        <div class="modal-content glass-effect small-modal">
+            <h2>Xác Nhận Xóa</h2>
+            <p>Bạn có chắc chắn muốn xóa bài học này? Hành động này không thể hoàn tác.</p>
+            <div class="form-actions">
+                <button type="button" class="glass-btn outline" id="cancelDeleteBtn">Hủy</button>
+                <button type="button" class="glass-btn delete-btn" id="confirmDeleteBtn">Xóa</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/loading.js"></script>
+    <script src="../js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Kiểm tra đăng nhập
+            const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            
+            if (!isAuthenticated || user.role !== 'admin') {
+                window.location.href = '../index.html';
+                return;
+            }
+            
+            // Hiển thị tên admin
+            const adminNameEl = document.getElementById('adminName');
+            if (adminNameEl && user.displayName) {
+                adminNameEl.textContent = user.displayName;
+            }
+            
+            // Xử lý đăng xuất
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function() {
+                    localStorage.removeItem('isAuthenticated');
+                    localStorage.removeItem('user');
+                    window.location.href = '../index.html';
+                });
+            }
+            
+            // Xử lý chọn tất cả
+            const selectAllCheckbox = document.getElementById('selectAll');
+            const tutorialCheckboxes = document.querySelectorAll('.tutorial-checkbox');
+            const selectedCount = document.querySelector('.selected-count');
+            const bulkButtons = document.querySelectorAll('.bulk-actions .glass-btn');
+            
+            selectAllCheckbox.addEventListener('change', function() {
+                tutorialCheckboxes.forEach(checkbox => {
+                    checkbox.checked = selectAllCheckbox.checked;
+                });
+                updateSelectedCount();
+            });
+            
+            tutorialCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateSelectedCount);
+            });
+            
+            function updateSelectedCount() {
+                const checkedCount = document.querySelectorAll('.tutorial-checkbox:checked').length;
+                selectedCount.textContent = `${checkedCount} bài học đã chọn`;
+                
+                bulkButtons.forEach(button => {
+                    button.disabled = checkedCount === 0;
+                });
+            }
+            
+            // Xử lý modal thêm/sửa bài học
+            const addTutorialBtn = document.getElementById('addTutorialBtn');
+            const tutorialModal = document.getElementById('tutorialModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const tutorialForm = document.getElementById('tutorialForm');
+            const cancelBtn = document.getElementById('cancelBtn');
+            const closeBtn = tutorialModal.querySelector('.close');
+            
+            addTutorialBtn.addEventListener('click', function() {
+                modalTitle.textContent = 'Thêm Bài Học Mới';
+                tutorialForm.reset();
+                tutorialModal.style.display = 'block';
+            });
+            
+            cancelBtn.addEventListener('click', function() {
+                tutorialModal.style.display = 'none';
+            });
+            
+            closeBtn.addEventListener('click', function() {
+                tutorialModal.style.display = 'none';
+            });
+            
+            // Xử lý nút sửa bài học
+            const editButtons = document.querySelectorAll('.edit-btn');
+            
+            editButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    const title = row.cells[1].textContent;
+                    const category = row.cells[2].textContent;
+                    const status = row.cells[4].querySelector('.status').classList.contains('published') ? 'published' : 'draft';
+                    
+                    modalTitle.textContent = 'Chỉnh Sửa Bài Học';
+                    
+                    document.getElementById('title').value = title;
+                    document.getElementById('category').value = category === 'Thiết Kế 2D' ? '2d' : 
+                                                            category === 'Mô Hình 3D' ? '3d' : 'electrical';
+                    document.getElementById('status').value = status;
+                    document.getElementById('description').value = 'Mô tả cho ' + title;
+                    document.getElementById('content').value = 'Nội dung chi tiết cho ' + title;
+                    
+                    tutorialModal.style.display = 'block';
+                });
+            });
+            
+            // Xử lý nút xóa
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            const deleteConfirmModal = document.getElementById('deleteConfirmModal');
+            const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+            const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+            let currentDeleteTarget = null;
+            
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    currentDeleteTarget = this.closest('tr');
+                    deleteConfirmModal.style.display = 'block';
+                });
+            });
+            
+            cancelDeleteBtn.addEventListener('click', function() {
+                deleteConfirmModal.style.display = 'none';
+                currentDeleteTarget = null;
+            });
+            
+            confirmDeleteBtn.addEventListener('click', function() {
+                if (currentDeleteTarget) {
+                    currentDeleteTarget.remove();
+                    updateSelectedCount();
+                }
+                deleteConfirmModal.style.display = 'none';
+                currentDeleteTarget = null;
+            });
+            
+            // Xử lý form thêm/sửa bài học
+            tutorialForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Trong thực tế sẽ gửi dữ liệu lên server
+                // Ở đây chỉ đóng modal và hiển thị thông báo
+                alert('Đã lưu bài học thành công!');
+                tutorialModal.style.display = 'none';
+            });
+            
+            // Xử lý filter và search
+            const searchInput = document.getElementById('searchTutorial');
+            const categoryFilter = document.getElementById('categoryFilter');
+            const statusFilter = document.getElementById('statusFilter');
+            
+            searchInput.addEventListener('keyup', applyFilters);
+            categoryFilter.addEventListener('change', applyFilters);
+            statusFilter.addEventListener('change', applyFilters);
+            
+            function applyFilters() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const categoryValue = categoryFilter.value;
+                const statusValue = statusFilter.value;
+                
+                const rows = document.querySelectorAll('#tutorialsList tr');
+                
+                rows.forEach(row => {
+                    const title = row.cells[1].textContent.toLowerCase();
+                    let category = row.cells[2].textContent.toLowerCase();
+                    category = category === 'thiết kế 2d' ? '2d' : 
+                               category === 'mô hình 3d' ? '3d' : 'electrical';
+                    
+                    const status = row.cells[4].querySelector('.status').classList.contains('published') ? 'published' : 'draft';
+                    
+                    const matchesSearch = searchTerm === '' || title.includes(searchTerm);
+                    const matchesCategory = categoryValue === '' || category === categoryValue;
+                    const matchesStatus = statusValue === '' || status === statusValue;
+                    
+                    if (matchesSearch && matchesCategory && matchesStatus) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

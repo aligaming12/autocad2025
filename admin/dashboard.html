@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng Điều Khiển Admin | AutoCAD Tutorial</title>
+    <meta name="description" content="Bảng điều khiển quản trị - Hướng Dẫn AutoCAD Online">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/loading.css">
+    <link rel="stylesheet" href="../css/glass.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!-- Phần loading -->
+    <div id="loading-screen">
+        <div class="logo-container">
+            <svg id="logo-svg" width="200" height="200" viewBox="0 0 200 200">
+                <!-- Logo sẽ được vẽ bằng JavaScript -->
+            </svg>
+        </div>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
+
+    <!-- Phần header -->
+    <header class="glass-header">
+        <div class="container">
+            <div class="logo">
+                <img src="../images/logo/autocad-logo.svg" alt="Logo AutoCAD Tutorial">
+                <h1>Hướng Dẫn AutoCAD - Admin</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Trang Chủ</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="active">Quản Trị <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu glass-effect">
+                            <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                            <li><a href="tutorials.html">Quản Lý Bài Học</a></li>
+                            <li><a href="users.html">Quản Lý Người Dùng</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button id="logoutBtn" class="glass-btn">Đăng Xuất</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container" style="padding-top: 100px;">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../index.html">Trang Chủ</a></li>
+            <li class="breadcrumb-item"><a href="#">Quản Trị</a></li>
+            <li class="breadcrumb-item active">Dashboard</li>
+        </ul>
+    </div>
+
+    <!-- Phần nội dung chính -->
+    <section class="admin-dashboard fade-in">
+        <div class="container">
+            <h1 class="admin-title">Bảng Điều Khiển Quản Trị</h1>
+            
+            <div class="admin-grid">
+                <!-- Sidebar quản trị -->
+                <div class="admin-sidebar glass-effect">
+                    <div class="admin-profile">
+                        <div class="admin-avatar">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <div class="admin-info">
+                            <h3 id="adminName">Admin</h3>
+                            <p>Quản trị viên</p>
+                        </div>
+                    </div>
+                    
+                    <ul class="admin-menu">
+                        <li class="active"><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li><a href="tutorials.html"><i class="fas fa-book"></i> Quản Lý Bài Học</a></li>
+                        <li><a href="users.html"><i class="fas fa-users"></i> Quản Lý Người Dùng</a></li>
+                        <li><a href="#" id="siteSettingsBtn"><i class="fas fa-cog"></i> Cài Đặt Website</a></li>
+                        <li><a href="../index.html"><i class="fas fa-external-link-alt"></i> Xem Website</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Nội dung chính -->
+                <div class="admin-content">
+                    <!-- Thống kê tổng quan -->
+                    <div class="stats-grid">
+                        <div class="stat-card glass-effect">
+                            <div class="stat-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Tổng Số Bài Học</h3>
+                                <p class="stat-number">24</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card glass-effect">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Người Dùng</h3>
+                                <p class="stat-number">128</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card glass-effect">
+                            <div class="stat-icon">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Lượt Xem</h3>
+                                <p class="stat-number">3,254</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card glass-effect">
+                            <div class="stat-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Bình Luận</h3>
+                                <p class="stat-number">42</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Hoạt động gần đây -->
+                    <div class="recent-activity glass-effect">
+                        <h2><i class="fas fa-history"></i> Hoạt Động Gần Đây</h2>
+                        <ul class="activity-list">
+                            <li>
+                                <div class="activity-icon"><i class="fas fa-user-plus"></i></div>
+                                <div class="activity-content">
+                                    <p><strong>Nguyễn Văn A</strong> đã đăng ký tài khoản mới</p>
+                                    <span class="activity-time">10 phút trước</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="activity-icon"><i class="fas fa-comment"></i></div>
+                                <div class="activity-content">
+                                    <p><strong>Trần Thị B</strong> đã bình luận trong bài "Hướng dẫn thiết kế 2D"</p>
+                                    <span class="activity-time">32 phút trước</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="activity-icon"><i class="fas fa-edit"></i></div>
+                                <div class="activity-content">
+                                    <p><strong>Admin</strong> đã cập nhật bài học "Lệnh Circle trong AutoCAD"</p>
+                                    <span class="activity-time">1 giờ trước</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="activity-icon"><i class="fas fa-user"></i></div>
+                                <div class="activity-content">
+                                    <p><strong>Lê Văn C</strong> đã hoàn thành khóa học "Thiết kế 2D"</p>
+                                    <span class="activity-time">3 giờ trước</span>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="activity-icon"><i class="fas fa-plus"></i></div>
+                                <div class="activity-content">
+                                    <p><strong>Admin</strong> đã thêm bài học mới "Thiết kế điện với AutoCAD"</p>
+                                    <span class="activity-time">1 ngày trước</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Bài học phổ biến -->
+                    <div class="popular-tutorials glass-effect">
+                        <h2><i class="fas fa-chart-line"></i> Bài Học Phổ Biến</h2>
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Tên Bài Học</th>
+                                    <th>Chuyên Mục</th>
+                                    <th>Lượt Xem</th>
+                                    <th>Đánh Giá</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Giới thiệu về thiết kế 2D</td>
+                                    <td>Thiết Kế 2D</td>
+                                    <td>1,245</td>
+                                    <td>4.8/5 <i class="fas fa-star"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>Sử dụng lệnh Line trong AutoCAD</td>
+                                    <td>Thiết Kế 2D</td>
+                                    <td>982</td>
+                                    <td>4.7/5 <i class="fas fa-star"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>Làm việc với khối 3D cơ bản</td>
+                                    <td>Mô Hình 3D</td>
+                                    <td>756</td>
+                                    <td>4.6/5 <i class="fas fa-star"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>Thiết kế sơ đồ mạch điện</td>
+                                    <td>Thiết Kế Điện</td>
+                                    <td>589</td>
+                                    <td>4.5/5 <i class="fas fa-star"></i></td>
+                                </tr>
+                                <tr>
+                                    <td>Quản lý layer trong AutoCAD</td>
+                                    <td>Thiết Kế 2D</td>
+                                    <td>478</td>
+                                    <td>4.4/5 <i class="fas fa-star"></i></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Cài đặt Website -->
+    <div id="siteSettingsModal" class="modal">
+        <div class="modal-content glass-effect">
+            <span class="close">&times;</span>
+            <h2>Cài Đặt Website</h2>
+            <form id="siteSettingsForm">
+                <div class="form-group">
+                    <label for="siteName">Tên Website</label>
+                    <input type="text" id="siteName" name="siteName" value="Hướng Dẫn AutoCAD" required>
+                </div>
+                <div class="form-group">
+                    <label for="siteDescription">Mô Tả</label>
+                    <textarea id="siteDescription" name="siteDescription" rows="3" required>Học AutoCAD trực tuyến miễn phí với các hướng dẫn chi tiết về thiết kế 2D, mô hình 3D và thiết kế điện</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="contactEmail">Email Liên Hệ</label>
+                    <input type="email" id="contactEmail" name="contactEmail" value="info@autocad-tutorial.vn" required>
+                </div>
+                <div class="form-group">
+                    <label for="primaryColor">Màu Chính</label>
+                    <input type="color" id="primaryColor" name="primaryColor" value="#0078d7">
+                </div>
+                <div class="form-group">
+                    <label for="secondaryColor">Màu Phụ</label>
+                    <input type="color" id="secondaryColor" name="secondaryColor" value="#00a2ff">
+                </div>
+                <button type="submit" class="glass-btn">Lưu Cài Đặt</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="../js/loading.js"></script>
+    <script src="../js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Kiểm tra đăng nhập
+            const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            
+            if (!isAuthenticated || user.role !== 'admin') {
+                window.location.href = '../index.html';
+                return;
+            }
+            
+            // Hiển thị tên admin
+            const adminNameEl = document.getElementById('adminName');
+            if (adminNameEl && user.displayName) {
+                adminNameEl.textContent = user.displayName;
+            }
+            
+            // Xử lý đăng xuất
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function() {
+                    localStorage.removeItem('isAuthenticated');
+                    localStorage.removeItem('user');
+                    window.location.href = '../index.html';
+                });
+            }
+            
+            // Xử lý modal cài đặt website
+            const siteSettingsBtn = document.getElementById('siteSettingsBtn');
+            const siteSettingsModal = document.getElementById('siteSettingsModal');
+            const closeBtn = siteSettingsModal.querySelector('.close');
+            const siteSettingsForm = document.getElementById('siteSettingsForm');
+            
+            siteSettingsBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                siteSettingsModal.style.display = 'block';
+            });
+            
+            closeBtn.addEventListener('click', function() {
+                siteSettingsModal.style.display = 'none';
+            });
+            
+            window.addEventListener('click', function(event) {
+                if (event.target === siteSettingsModal) {
+                    siteSettingsModal.style.display = 'none';
+                }
+            });
+            
+            siteSettingsForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Lưu cài đặt vào localStorage (trong thực tế sẽ gửi lên server)
+                const settings = {
+                    siteName: document.getElementById('siteName').value,
+                    siteDescription: document.getElementById('siteDescription').value,
+                    contactEmail: document.getElementById('contactEmail').value,
+                    primaryColor: document.getElementById('primaryColor').value,
+                    secondaryColor: document.getElementById('secondaryColor').value
+                };
+                
+                localStorage.setItem('siteSettings', JSON.stringify(settings));
+                
+                // Hiển thị thông báo
+                alert('Đã lưu cài đặt thành công!');
+                siteSettingsModal.style.display = 'none';
+            });
+            
+            // Highlight active menu
+            const adminMenu = document.querySelector('.admin-menu');
+            const currentLocation = window.location.pathname;
+            
+            if (adminMenu) {
+                const menuItems = adminMenu.querySelectorAll('li a');
+                
+                menuItems.forEach(item => {
+                    if (currentLocation.includes(item.getAttribute('href'))) {
+                        item.parentElement.classList.add('active');
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

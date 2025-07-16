@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản Lý Người Dùng | AutoCAD Tutorial</title>
+    <meta name="description" content="Quản lý người dùng - Hướng Dẫn AutoCAD Online">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/loading.css">
+    <link rel="stylesheet" href="../css/glass.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <!-- Phần loading -->
+    <div id="loading-screen">
+        <div class="logo-container">
+            <svg id="logo-svg" width="200" height="200" viewBox="0 0 200 200">
+                <!-- Logo sẽ được vẽ bằng JavaScript -->
+            </svg>
+        </div>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
+
+    <!-- Phần header -->
+    <header class="glass-header">
+        <div class="container">
+            <div class="logo">
+                <img src="../images/logo/autocad-logo.svg" alt="Logo AutoCAD Tutorial">
+                <h1>Hướng Dẫn AutoCAD - Admin</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Trang Chủ</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="active">Quản Trị <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu glass-effect">
+                            <li><a href="dashboard.html">Dashboard</a></li>
+                            <li><a href="tutorials.html">Quản Lý Bài Học</a></li>
+                            <li><a href="users.html" class="active">Quản Lý Người Dùng</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="auth-buttons">
+                <button id="logoutBtn" class="glass-btn">Đăng Xuất</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container" style="padding-top: 100px;">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../index.html">Trang Chủ</a></li>
+            <li class="breadcrumb-item"><a href="#">Quản Trị</a></li>
+            <li class="breadcrumb-item active">Quản Lý Người Dùng</li>
+        </ul>
+    </div>
+
+    <!-- Phần nội dung chính -->
+    <section class="admin-dashboard fade-in">
+        <div class="container">
+            <h1 class="admin-title">Quản Lý Người Dùng</h1>
+            
+            <div class="admin-grid">
+                <!-- Sidebar quản trị -->
+                <div class="admin-sidebar glass-effect">
+                    <div class="admin-profile">
+                        <div class="admin-avatar">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <div class="admin-info">
+                            <h3 id="adminName">Admin</h3>
+                            <p>Quản trị viên</p>
+                        </div>
+                    </div>
+                    
+                    <ul class="admin-menu">
+                        <li><a href="dashboard.html"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                        <li><a href="tutorials.html"><i class="fas fa-book"></i> Quản Lý Bài Học</a></li>
+                        <li class="active"><a href="users.html"><i class="fas fa-users"></i> Quản Lý Người Dùng</a></li>
+                        <li><a href="#" id="siteSettingsBtn"><i class="fas fa-cog"></i> Cài Đặt Website</a></li>
+                        <li><a href="../index.html"><i class="fas fa-external-link-alt"></i> Xem Website</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Nội dung chính -->
+                <div class="admin-content">
+                    <!-- Thống kê người dùng -->
+                    <div class="stats-grid">
+                        <div class="stat-card glass-effect">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Tổng Số Người Dùng</h3>
+                                <p class="stat-number">128</p>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card glass-effect">
+                            <div class="stat-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Người Dùng Mới</h3>
+                                <p class="stat-number">12</p>
+                                <span class="stat-period">tháng này</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card glass-effect">
+                            <div class="stat-icon">
+                                <i class="fas fa-user-check"></i>
+                            </div>
+                            <div class="stat-info">
+                                <h3>Người Dùng Hoạt Động</h3>
+                                <p class="stat-number">86</p>
+                                <span class="stat-period">30 ngày qua</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Công cụ quản lý -->
+                    <div class="admin-toolbar glass-effect">
+                        <div class="search-form">
+                            <input type="text" placeholder="Tìm kiếm người dùng..." id="searchUser">
+                            <button type="button"><i class="fas fa-search"></i></button>
+                        </div>
+                        
+                        <div class="filter-options">
+                            <select id="roleFilter">
+                                <option value="">Tất cả vai trò</option>
+                                <option value="admin">Admin</option>
+                                <option value="user">Người dùng</option>
+                                <option value="editor">Biên tập viên</option>
+                            </select>
+                            
+                            <select id="statusFilter">
+                                <option value="">Tất cả trạng thái</option>
+                                <option value="active">Hoạt động</option>
+                                <option value="inactive">Không hoạt động</option>
+                                <option value="blocked">Đã chặn</option>
+                            </select>
+                        </div>
+                        
+                        <button id="addUserBtn" class="glass-btn"><i class="fas fa-plus"></i> Thêm Người Dùng</button>
+                    </div>
+                    
+                    <!-- Bảng quản lý người dùng -->
+                    <div class="users-table glass-effect">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 5%"><input type="checkbox" id="selectAll"></th>
+                                    <th style="width: 20%">Tên Người Dùng</th>
+                                    <th style="width: 25%">Email</th>
+                                    <th style="width: 15%">Vai Trò</th>
+                                    <th style="width: 15%">Trạng Thái</th>
+                                    <th style="width: 10%">Ngày Đăng Ký</th>
+                                    <th style="width: 10%">Thao Tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="usersList">
+                                <tr>
+                                    <td><input type="checkbox" class="user-checkbox"></td>
+                                    <td>
+                                        <div class="user-info">
+                                            <div class="user-avatar"><i class="fas fa-user-shield"></i></div>
+                                            <div>
+                                                <div class="user-name">Admin</div>
+                                                <div class="user-username">admin</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>admin@autocad-tutorial.vn</td>
+                                    <td><span class="role admin">Admin</span></td>
+                                    <td><span class="status active">Hoạt động</span></td>
+                                    <td>01/01/2023</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="edit-btn" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                                            <button class="view-btn" title="Xem"><i class="fas fa-eye"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="user-checkbox"></td>
+                                    <td>
+                                        <div class="user-info">
+                                            <div class="user-avatar"><i class="fas fa-user"></i></div>
+                                            <div>
+                                                <div class="user-name">Nguyễn Văn A</div>
+                                                <div class="user-username">nguyenvana</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>nguyenvana@gmail.com</td>
+                                    <td><span class="role user">Người dùng</span></td>
+                                    <td><span class="status active">Hoạt động</span></td>
+                                    <td>15/03/2023</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="edit-btn" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                                            <button class="view-btn" title="Xem"><i class="fas fa-eye"></i></button>
+                                            <button class="delete-btn" title="Xóa"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="user-checkbox"></td>
+                                    <td>
+                                        <div class="user-info">
+                                            <div class="user-avatar"><i class="fas fa-user-edit"></i></div>
+                                            <div>
+                                                <div class="user-name">Trần Thị B</div>
+                                                <div class="user-username">tranthib</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>tranthib@gmail.com</td>
+                                    <td><span class="role editor">Biên tập viên</span></td>
+                                    <td><span class="status active">Hoạt động</span></td>
+                                    <td>20/03/2023</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="edit-btn" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                                            <button class="view-btn" title="Xem"><i class="fas fa-eye"></i></button>
+                                            <button class="delete-btn" title="Xóa"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="user-checkbox"></td>
+                                    <td>
+                                        <div class="user-info">
+                                            <div class="user-avatar"><i class="fas fa-user"></i></div>
+                                            <div>
+                                                <div class="user-name">Lê Văn C</div>
+                                                <div class="user-username">levanc</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>levanc@gmail.com</td>
+                                    <td><span class="role user">Người dùng</span></td>
+                                    <td><span class="status inactive">Không hoạt động</span></td>
+                                    <td>05/04/2023</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="edit-btn" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                                            <button class="view-btn" title="Xem"><i class="fas fa-eye"></i></button>
+                                            <button class="delete-btn" title="Xóa"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><input type="checkbox" class="user-checkbox"></td>
+                                    <td>
+                                        <div class="user-info">
+                                            <div class="user-avatar"><i class="fas fa-user"></i></div>
+                                            <div>
+                                                <div class="user-name">Phạm Thị D</div>
+                                                <div class="user-username">phamthid</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td>phamthid@gmail.com</td>
+                                    <td><span class="role user">Người dùng</span></td>
+                                    <td><span class="status blocked">Đã chặn</span></td>
+                                    <td>10/04/2023</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="edit-btn" title="Chỉnh sửa"><i class="fas fa-edit"></i></button>
+                                            <button class="view-btn" title="Xem"><i class="fas fa-eye"></i></button>
+                                            <button class="delete-btn" title="Xóa"><i class="fas fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Phân trang -->
+                    <div class="pagination glass-effect">
+                        <button class="page-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                        <button class="page-btn active">1</button>
+                        <button class="page-btn">2</button>
+                        <button class="page-btn">3</button>
+                        <button class="page-btn"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                    
+                    <!-- Thanh công cụ hàng loạt -->
+                    <div class="bulk-actions glass-effect">
+                        <div class="selected-count">0 người dùng đã chọn</div>
+                        <div class="bulk-buttons">
+                            <button class="glass-btn" id="bulkActivate" disabled>Kích Hoạt</button>
+                            <button class="glass-btn" id="bulkBlock" disabled>Chặn</button>
+                            <button class="glass-btn" id="bulkDelete" disabled>Xóa</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal Thêm/Sửa Người Dùng -->
+    <div id="userModal" class="modal">
+        <div class="modal-content glass-effect">
+            <span class="close">&times;</span>
+            <h2 id="modalTitle">Thêm Người Dùng Mới</h2>
+            <form id="userForm">
+                <div class="form-group">
+                    <label for="username">Tên đăng nhập</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="fullname">Họ và tên</label>
+                    <input type="text" id="fullname" name="fullname" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="role">Vai trò</label>
+                        <select id="role" name="role" required>
+                            <option value="user">Người dùng</option>
+                            <option value="editor">Biên tập viên</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="status">Trạng thái</label>
+                        <select id="status" name="status" required>
+                            <option value="active">Hoạt động</option>
+                            <option value="inactive">Không hoạt động</option>
+                            <option value="blocked">Đã chặn</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Mật khẩu</label>
+                    <input type="password" id="password" name="password">
+                    <small>Để trống nếu không muốn thay đổi mật khẩu</small>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="button" class="glass-btn outline" id="cancelBtn">Hủy</button>
+                    <button type="submit" class="glass-btn" id="saveBtn">Lưu Người Dùng</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal Cài đặt Website -->
+    <div id="siteSettingsModal" class="modal">
+        <div class="modal-content glass-effect">
+            <span class="close">&times;</span>
+            <h2>Cài Đặt Website</h2>
+            <form id="siteSettingsForm">
+                <div class="form-group">
+                    <label for="siteName">Tên Website</label>
+                    <input type="text" id="siteName" name="siteName" value="Hướng Dẫn AutoCAD" required>
+                </div>
+                <div class="form-group">
+                    <label for="siteDescription">Mô Tả</label>
+                    <textarea id="siteDescription" name="siteDescription" rows="3" required>Học AutoCAD trực tuyến miễn phí với các hướng dẫn chi tiết về thiết kế 2D, mô hình 3D và thiết kế điện</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="contactEmail">Email Liên Hệ</label>
+                    <input type="email" id="contactEmail" name="contactEmail" value="info@autocad-tutorial.vn" required>
+                </div>
+                <div class="form-group">
+                    <label for="primaryColor">Màu Chính</label>
+                    <input type="color" id="primaryColor" name="primaryColor" value="#0078d7">
+                </div>
+                <div class="form-group">
+                    <label for="secondaryColor">Màu Phụ</label>
+                    <input type="color" id="secondaryColor" name="secondaryColor" value="#00a2ff">
+                </div>
+                <button type="submit" class="glass-btn">Lưu Cài Đặt</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Xác nhận xóa -->
+    <div id="deleteConfirmModal" class="modal">
+        <div class="modal-content glass-effect small-modal">
+            <h2>Xác Nhận Xóa</h2>
+            <p>Bạn có chắc chắn muốn xóa người dùng này? Hành động này không thể hoàn tác.</p>
+            <div class="form-actions">
+                <button type="button" class="glass-btn outline" id="cancelDeleteBtn">Hủy</button>
+                <button type="button" class="glass-btn delete-btn" id="confirmDeleteBtn">Xóa</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="../js/loading.js"></script>
+    <script src="../js/admin.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Kiểm tra đăng nhập
+            const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            
+            if (!isAuthenticated || user.role !== 'admin') {
+                window.location.href = '../index.html';
+                return;
+            }
+            
+            // Hiển thị tên admin
+            const adminNameEl = document.getElementById('adminName');
+            if (adminNameEl && user.displayName) {
+                adminNameEl.textContent = user.displayName;
+            }
+            
+            // Xử lý đăng xuất
+            const logoutBtn = document.getElementById('logoutBtn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', function() {
+                    localStorage.removeItem('isAuthenticated');
+                    localStorage.removeItem('user');
+                    window.location.href = '../index.html';
+                });
+            }
+            
+            // Xử lý chọn tất cả
+            const selectAllCheckbox = document.getElementById('selectAll');
+            const userCheckboxes = document.querySelectorAll('.user-checkbox');
+            const selectedCount = document.querySelector('.selected-count');
+            const bulkButtons = document.querySelectorAll('.bulk-actions .glass-btn');
+            
+            selectAllCheckbox.addEventListener('change', function() {
+                userCheckboxes.forEach(checkbox => {
+                    checkbox.checked = selectAllCheckbox.checked;
+                });
+                updateSelectedCount();
+            });
+            
+            userCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', updateSelectedCount);
+            });
+            
+            function updateSelectedCount() {
+                const checkedCount = document.querySelectorAll('.user-checkbox:checked').length;
+                selectedCount.textContent = `${checkedCount} người dùng đã chọn`;
+                
+                bulkButtons.forEach(button => {
+                    button.disabled = checkedCount === 0;
+                });
+            }
+            
+            // Xử lý modal thêm/sửa người dùng
+            const addUserBtn = document.getElementById('addUserBtn');
+            const userModal = document.getElementById('userModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const userForm = document.getElementById('userForm');
+            const cancelBtn = document.getElementById('cancelBtn');
+            const closeBtn = userModal.querySelector('.close');
+            
+            addUserBtn.addEventListener('click', function() {
+                modalTitle.textContent = 'Thêm Người Dùng Mới';
+                userForm.reset();
+                document.getElementById('password').required = true;
+                userModal.style.display = 'block';
+            });
+            
+            cancelBtn.addEventListener('click', function() {
+                userModal.style.display = 'none';
+            });
+            
+            closeBtn.addEventListener('click', function() {
+                userModal.style.display = 'none';
+            });
+            
+            // Xử lý nút sửa người dùng
+            const editButtons = document.querySelectorAll('.edit-btn');
+            
+            editButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const row = this.closest('tr');
+                    const userInfo = row.querySelector('.user-info');
+                    const name = userInfo.querySelector('.user-name').textContent;
+                    const username = userInfo.querySelector('.user-username').textContent;
+                    const email = row.cells[2].textContent;
+                    const role = row.cells[3].querySelector('.role').textContent.toLowerCase();
+                    const status = row.cells[4].querySelector('.status').textContent.toLowerCase();
+                    
+                    modalTitle.textContent = 'Chỉnh Sửa Người Dùng';
+                    
+                    document.getElementById('username').value = username;
+                    document.getElementById('fullname').value = name;
+                    document.getElementById('email').value = email;
+                    document.getElementById('role').value = role === 'admin' ? 'admin' : 
+                                                       role === 'biên tập viên' ? 'editor' : 'user';
+                    document.getElementById('status').value = status === 'hoạt động' ? 'active' : 
+                                                         status === 'đã chặn' ? 'blocked' : 'inactive';
+                    
+                    document.getElementById('password').required = false;
+                    
+                    userModal.style.display = 'block';
+                });
+            });
+            
+            // Xử lý nút xóa
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            const deleteConfirmModal = document.getElementById('deleteConfirmModal');
+            const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+            const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+            let currentDeleteTarget = null;
+            
+            deleteButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    currentDeleteTarget = this.closest('tr');
+                    deleteConfirmModal.style.display = 'block';
+                });
+            });
+            
+            cancelDeleteBtn.addEventListener('click', function() {
+                deleteConfirmModal.style.display = 'none';
+                currentDeleteTarget = null;
+            });
+            
+            confirmDeleteBtn.addEventListener('click', function() {
+                if (currentDeleteTarget) {
+                    currentDeleteTarget.remove();
+                    updateSelectedCount();
+                }
+                deleteConfirmModal.style.display = 'none';
+                currentDeleteTarget = null;
+            });
+            
+            // Xử lý form thêm/sửa người dùng
+            userForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Trong thực tế sẽ gửi dữ liệu lên server
+                // Ở đây chỉ đóng modal và hiển thị thông báo
+                alert('Đã lưu thông tin người dùng thành công!');
+                userModal.style.display = 'none';
+            });
+            
+            // Xử lý filter và search
+            const searchInput = document.getElementById('searchUser');
+            const roleFilter = document.getElementById('roleFilter');
+            const statusFilter = document.getElementById('statusFilter');
+            
+            searchInput.addEventListener('keyup', applyFilters);
+            roleFilter.addEventListener('change', applyFilters);
+            statusFilter.addEventListener('change', applyFilters);
+            
+            function applyFilters() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const roleValue = roleFilter.value;
+                const statusValue = statusFilter.value;
+                
+                const rows = document.querySelectorAll('#usersList tr');
+                
+                rows.forEach(row => {
+                    const userInfo = row.querySelector('.user-info');
+                    const name = userInfo.querySelector('.user-name').textContent.toLowerCase();
+                    const username = userInfo.querySelector('.user-username').textContent.toLowerCase();
+                    const email = row.cells[2].textContent.toLowerCase();
+                    
+                    let role = row.cells[3].querySelector('.role').textContent.toLowerCase();
+                    role = role === 'admin' ? 'admin' : 
+                           role === 'biên tập viên' ? 'editor' : 'user';
+                    
+                    let status = row.cells[4].querySelector('.status').textContent.toLowerCase();
+                    status = status === 'hoạt động' ? 'active' : 
+                             status === 'đã chặn' ? 'blocked' : 'inactive';
+                    
+                    const matchesSearch = searchTerm === '' || 
+                                          name.includes(searchTerm) || 
+                                          username.includes(searchTerm) || 
+                                          email.includes(searchTerm);
+                    
+                    const matchesRole = roleValue === '' || role === roleValue;
+                    const matchesStatus = statusValue === '' || status === statusValue;
+                    
+                    if (matchesSearch && matchesRole && matchesStatus) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html> 

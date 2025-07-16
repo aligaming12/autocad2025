@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hướng Dẫn Thiết Kế Điện | AutoCAD Tutorial</title>
+    <meta name="description" content="Học thiết kế hệ thống điện với AutoCAD - Hướng dẫn từ cơ bản đến nâng cao">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/glass.css">
+    <link rel="stylesheet" href="../css/loading.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Phần loading -->
+    <div id="loading-screen">
+        <div class="logo-container">
+            <svg id="logo-svg" width="200" height="200" viewBox="0 0 200 200">
+                <!-- Logo sẽ được vẽ bằng JavaScript -->
+            </svg>
+        </div>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
+
+    <!-- Phần header -->
+    <header class="glass-header">
+        <div class="container">
+            <div class="logo">
+                <img src="../images/logo/autocad-logo.svg" alt="Logo AutoCAD Tutorial">
+                <h1>Hướng Dẫn AutoCAD</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html">Trang Chủ</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="active">Khóa Học <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu glass-effect">
+                            <li><a href="2d-design.html">Thiết Kế 2D</a></li>
+                            <li><a href="3d-modeling.html">Mô Hình 3D</a></li>
+                            <li><a href="electrical.html" class="active">Thiết Kế Điện</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="../about.html">Giới Thiệu</a></li>
+                    <li><a href="../contact.html">Liên Hệ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="container" style="padding-top: 100px;">
+        <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="../index.html">Trang Chủ</a></li>
+            <li class="breadcrumb-item"><a href="#">Khóa Học</a></li>
+            <li class="breadcrumb-item active">Thiết Kế Điện</li>
+        </ul>
+    </div>
+
+    <!-- Phần nội dung chính -->
+    <div class="tutorial-container container">
+        <!-- Phần sidebar -->
+        <div class="sidebar glass-effect">
+            <h3 class="tutorial-menu-title">Nội dung khóa học</h3>
+            <ul class="tutorial-menu">
+                <li class="menu-category">Phần Cơ Bản</li>
+                <li class="menu-item open">
+                    <a href="#intro">Giới thiệu về thiết kế điện</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#basics">Kiến thức cơ bản</a>
+                    <ul class="submenu">
+                        <li><a href="#symbols">Ký hiệu điện tiêu chuẩn</a></li>
+                        <li><a href="#standards">Tiêu chuẩn thiết kế điện</a></li>
+                        <li><a href="#workspace">Cài đặt không gian làm việc</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#schematic">Sơ đồ nguyên lý</a>
+                    <ul class="submenu">
+                        <li><a href="#components">Đặt linh kiện điện</a></li>
+                        <li><a href="#wiring">Đi dây và kết nối</a></li>
+                        <li><a href="#circuits">Thiết kế mạch điện</a></li>
+                    </ul>
+                </li>
+                <li class="menu-category">Phần Nâng Cao</li>
+                <li class="menu-item">
+                    <a href="#panel">Thiết kế bảng điện</a>
+                    <ul class="submenu">
+                        <li><a href="#panel-layout">Bố trí thiết bị</a></li>
+                        <li><a href="#panel-dimensions">Kích thước và thông số</a></li>
+                        <li><a href="#panel-labeling">Ghi chú và nhãn</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#building">Hệ thống điện công trình</a>
+                    <ul class="submenu">
+                        <li><a href="#lighting">Hệ thống chiếu sáng</a></li>
+                        <li><a href="#power">Hệ thống nguồn</a></li>
+                        <li><a href="#grounding">Hệ thống nối đất</a></li>
+                    </ul>
+                </li>
+                <li class="menu-item">
+                    <a href="#reports">Báo cáo và bảng tính</a>
+                </li>
+                <li class="menu-item">
+                    <a href="#projects">Dự án thực hành</a>
+                    <ul class="submenu">
+                        <li><a href="#project1">Dự án 1: Thiết kế điện nhà ở</a></li>
+                        <li><a href="#project2">Dự án 2: Thiết kế bảng điện công nghiệp</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Phần nội dung chính -->
+        <div class="tutorial-content glass-effect fade-in">
+            <h1 id="intro">Hướng Dẫn Thiết Kế Điện Với AutoCAD</h1>
+            
+            <p>AutoCAD Electrical là phần mềm chuyên dụng cho thiết kế hệ thống điện và điều khiển tự động. Trong khóa học này, bạn sẽ học cách sử dụng các công cụ chuyên biệt để tạo ra các bản vẽ điện chính xác và hiệu quả.</p>
+            
+            <p>Thiết kế điện với AutoCAD được sử dụng rộng rãi trong nhiều lĩnh vực như xây dựng, công nghiệp, và tự động hóa. Việc nắm vững các kỹ năng thiết kế điện không chỉ giúp bạn tạo ra các bản vẽ chuyên nghiệp mà còn đảm bảo các hệ thống điện được thiết kế an toàn và hiệu quả.</p>
+            
+            <div class="note">
+                <strong>Lưu ý:</strong> Khóa học này tập trung vào AutoCAD Electrical, một phiên bản chuyên biệt của AutoCAD dành cho thiết kế điện. Tuy nhiên, nhiều nguyên tắc và kỹ thuật có thể áp dụng cho phiên bản AutoCAD tiêu chuẩn với các thư viện và công cụ bổ sung.
+            </div>
+            
+            <h2 id="basics">Kiến Thức Cơ Bản</h2>
+            
+            <p>Trước khi đi vào thiết kế các hệ thống điện phức tạp, bạn cần hiểu rõ về các ký hiệu điện tiêu chuẩn và quy tắc thiết kế.</p>
+            
+            <h3 id="symbols">Ký Hiệu Điện Tiêu Chuẩn</h3>
+            
+            <p>Các ký hiệu điện là ngôn ngữ chung trong thiết kế điện. AutoCAD Electrical cung cấp một thư viện đầy đủ các ký hiệu theo các tiêu chuẩn khác nhau như IEC, JIC, và NFPA.</p>
+            
+            <div class="code-block">
+                Truy cập thư viện ký hiệu:<br>
+                1. Nhấp vào tab Schematic<br>
+                2. Trong nhóm Icon Menu, nhấp vào Insert Component<br>
+                3. Duyệt qua các danh mục để tìm ký hiệu phù hợp
+            </div>
+            
+            <div class="tip">
+                <strong>Mẹo:</strong> Bạn có thể tạo các ký hiệu tùy chỉnh và lưu vào thư viện để sử dụng lại trong các dự án khác.
+            </div>
+            
+            <img src="../images/tutorials/electrical-symbols.jpg" alt="Các ký hiệu điện tiêu chuẩn trong AutoCAD Electrical">
+            
+            <h3 id="standards">Tiêu Chuẩn Thiết Kế Điện</h3>
+            
+            <p>Các tiêu chuẩn thiết kế điện đảm bảo rằng các bản vẽ và hệ thống điện tuân thủ các quy định về an toàn và hiệu suất.</p>
+            
+            <p>Một số tiêu chuẩn phổ biến:</p>
+            <ul>
+                <li>TCVN 7447 (IEC 60364): Hệ thống điện hạ áp</li>
+                <li>QCVN 12:2014/BXD: Quy chuẩn kỹ thuật quốc gia về an toàn điện</li>
+                <li>IEEE 1584: Tiêu chuẩn về tính toán hồ quang điện</li>
+                <li>NFPA 70: Bộ luật điện quốc gia (National Electrical Code - NEC)</li>
+                <li>IEC 60617: Ký hiệu đồ họa cho sơ đồ</li>
+            </ul>
+            
+            <div class="warning">
+                <strong>Cảnh báo:</strong> Luôn tuân thủ các tiêu chuẩn và quy định địa phương khi thiết kế hệ thống điện. Việc không tuân thủ có thể dẫn đến các vấn đề về an toàn và pháp lý.
+            </div>
+            
+            <h3 id="workspace">Cài Đặt Không Gian Làm Việc</h3>
+            
+            <p>AutoCAD Electrical có giao diện đặc biệt được tối ưu hóa cho thiết kế điện. Việc thiết lập không gian làm việc đúng cách sẽ giúp bạn làm việc hiệu quả hơn.</p>
+            
+            <div class="code-block">
+                Cài đặt không gian làm việc:<br>
+                1. Khởi động AutoCAD Electrical<br>
+                2. Nhấp vào biểu tượng Workspace Switching ở góc dưới bên phải<br>
+                3. Chọn "Electrical" từ danh sách<br>
+                4. Tùy chỉnh thanh công cụ và bảng điều khiển theo nhu cầu
+            </div>
+            
+            <p>Các cài đặt quan trọng khác bao gồm:</p>
+            <ul>
+                <li>Thiết lập thư mục dự án và thư viện</li>
+                <li>Cài đặt các biến môi trường</li>
+                <li>Tùy chỉnh các tiêu chuẩn vẽ</li>
+                <li>Thiết lập các thuộc tính mặc định cho các thành phần điện</li>
+            </ul>
+            
+            <h2 id="schematic">Sơ Đồ Nguyên Lý</h2>
+            
+            <p>Sơ đồ nguyên lý là một phần quan trọng của thiết kế điện, thể hiện cách các thành phần được kết nối với nhau trong một hệ thống điện.</p>
+            
+            <h3 id="components">Đặt Linh Kiện Điện</h3>
+            
+            <p>AutoCAD Electrical cung cấp nhiều công cụ để chèn và quản lý các linh kiện điện trong bản vẽ của bạn.</p>
+            
+            <div class="code-block">
+                Chèn linh kiện điện:<br>
+                1. Nhấp vào tab Schematic<br>
+                2. Trong nhóm Insert Components, chọn Icon Menu<br>
+                3. Duyệt qua các danh mục để tìm linh kiện cần thiết<br>
+                4. Chọn linh kiện và đặt vào bản vẽ<br>
+                5. Điền các thông tin thuộc tính khi được nhắc
+            </div>
+            
+            <p>Các loại linh kiện phổ biến:</p>
+            <ul>
+                <li>Thiết bị đóng cắt (CB, MCCB, MCB)</li>
+                <li>Rơle và công tắc tơ</li>
+                <li>Động cơ và máy biến áp</li>
+                <li>Thiết bị đo lường và cảm biến</li>
+                <li>PLC và bộ điều khiển</li>
+            </ul>
+            
+            <h3 id="wiring">Đi Dây và Kết Nối</h3>
+            
+            <p>Sau khi đặt các linh kiện, bạn cần kết nối chúng bằng dây điện. AutoCAD Electrical tự động gán số dây và theo dõi các kết nối.</p>
+            
+            <div class="code-block">
+                Vẽ dây điện:<br>
+                1. Nhấp vào tab Schematic<br>
+                2. Trong nhóm Wires, chọn Insert Wire<br>
+                3. Nhấp vào điểm bắt đầu của dây<br>
+                4. Nhấp vào điểm kết thúc<br>
+                5. Tiếp tục vẽ các đoạn dây khác hoặc nhấn ESC để kết thúc
+            </div>
+            
+            <div class="tip">
+                <strong>Mẹo:</strong> Sử dụng công cụ Wire Numbers để đánh số dây tự động. Điều này giúp theo dõi các kết nối trong các bản vẽ phức tạp.
+            </div>
+            
+            <h3 id="circuits">Thiết Kế Mạch Điện</h3>
+            
+            <p>Thiết kế mạch điện là việc tổ chức các linh kiện và kết nối thành các mạch chức năng hoàn chỉnh.</p>
+            
+            <div class="code-block">
+                Các bước thiết kế mạch điện:<br>
+                1. Xác định yêu cầu chức năng của mạch<br>
+                2. Chọn các linh kiện phù hợp<br>
+                3. Sắp xếp các linh kiện theo logic<br>
+                4. Kết nối các linh kiện bằng dây điện<br>
+                5. Thêm các thiết bị bảo vệ và điều khiển<br>
+                6. Gắn nhãn và thêm ghi chú
+            </div>
+            
+            <p>Một số mạch điện thông dụng:</p>
+            <ul>
+                <li>Mạch điều khiển động cơ (khởi động trực tiếp, đảo chiều, sao-tam giác)</li>
+                <li>Mạch điều khiển PLC</li>
+                <li>Mạch nguồn và phân phối điện</li>
+                <li>Mạch chiếu sáng và công tắc</li>
+            </ul>
+            
+            <h2 id="panel">Thiết Kế Bảng Điện</h2>
+            
+            <p>Bảng điện là nơi tập trung các thiết bị điều khiển và bảo vệ trong một hệ thống điện. Thiết kế bảng điện hiệu quả đòi hỏi sự cân nhắc về không gian, làm mát và khả năng tiếp cận.</p>
+            
+            <h3 id="panel-layout">Bố Trí Thiết Bị</h3>
+            
+            <p>Bố trí thiết bị trong bảng điện cần đảm bảo các thiết bị được sắp xếp logic, dễ tiếp cận và có đủ không gian để tản nhiệt.</p>
+            
+            <div class="code-block">
+                Tạo bố trí bảng điện:<br>
+                1. Nhấp vào tab Panel<br>
+                2. Trong nhóm Panel Layout, chọn Footprint<br>
+                3. Chọn thiết bị từ thư viện<br>
+                4. Đặt thiết bị vào bảng điện<br>
+                5. Sử dụng công cụ Nameplate để thêm nhãn
+            </div>
+            
+            <div class="tip">
+                <strong>Mẹo:</strong> Các thiết bị công suất lớn nên được đặt ở phía dưới bảng điện để tối ưu hóa việc tản nhiệt. Các thiết bị điều khiển và hiển thị nên được đặt ở vị trí dễ quan sát và thao tác.
+            </div>
+            
+            <h3 id="panel-dimensions">Kích Thước và Thông Số</h3>
+            
+            <p>Việc xác định đúng kích thước bảng điện và các thông số kỹ thuật là rất quan trọng để đảm bảo an toàn và hiệu quả.</p>
+            
+            <div class="code-block">
+                Các yếu tố cần xem xét:<br>
+                1. Kích thước của tất cả các thiết bị<br>
+                2. Khoảng cách an toàn giữa các thiết bị<br>
+                3. Không gian cho đi dây và làm mát<br>
+                4. Khả năng mở rộng trong tương lai<br>
+                5. Các yêu cầu về chống bụi và nước (IP rating)
+            </div>
+            
+            <p>AutoCAD Electrical cung cấp các công cụ để tính toán tự động các thông số như:</p>
+            <ul>
+                <li>Kích thước tủ điện</li>
+                <li>Kích thước máng cáp</li>
+                <li>Tải nhiệt và yêu cầu làm mát</li>
+                <li>Độ sụt áp và tổn thất công suất</li>
+            </ul>
+            
+            <h3 id="panel-labeling">Ghi Chú và Nhãn</h3>
+            
+            <p>Ghi chú và nhãn rõ ràng giúp dễ dàng nhận biết và bảo trì các thiết bị trong bảng điện.</p>
+            
+            <div class="code-block">
+                Thêm nhãn cho thiết bị:<br>
+                1. Nhấp vào tab Panel<br>
+                2. Trong nhóm Panel Layout, chọn Nameplate<br>
+                3. Chọn kiểu nhãn<br>
+                4. Đặt nhãn gần thiết bị tương ứng<br>
+                5. Điền thông tin cho nhãn
+            </div>
+            
+            <p>Các loại nhãn và ghi chú trong bảng điện:</p>
+            <ul>
+                <li>Nhãn định danh thiết bị (TAG)</li>
+                <li>Nhãn cảnh báo an toàn</li>
+                <li>Sơ đồ đấu dây</li>
+                <li>Hướng dẫn vận hành</li>
+                <li>Thông tin liên hệ bảo trì</li>
+            </ul>
+            
+            <h2 id="building">Hệ Thống Điện Công Trình</h2>
+            
+            <p>Thiết kế hệ thống điện cho công trình bao gồm nhiều hệ thống con, mỗi hệ thống có các yêu cầu và tiêu chuẩn riêng.</p>
+            
+            <h3 id="lighting">Hệ Thống Chiếu Sáng</h3>
+            
+            <p>Hệ thống chiếu sáng đảm bảo đủ ánh sáng cho các hoạt động trong công trình, đồng thời tiết kiệm năng lượng.</p>
+            
+            <div class="code-block">
+                Các bước thiết kế hệ thống chiếu sáng:<br>
+                1. Xác định yêu cầu độ rọi (lux) cho từng khu vực<br>
+                2. Chọn loại đèn phù hợp<br>
+                3. Tính toán số lượng đèn cần thiết<br>
+                4. Bố trí đèn trên bản vẽ<br>
+                5. Thiết kế mạch điều khiển đèn<br>
+                6. Tính toán tải điện và kích thước dây dẫn
+            </div>
+            
+            <h3 id="power">Hệ Thống Nguồn</h3>
+            
+            <p>Hệ thống nguồn cung cấp điện cho tất cả các thiết bị trong công trình, bao gồm các ổ cắm, thiết bị cố định và các hệ thống khác.</p>
+            
+            <div class="code-block">
+                Các bước thiết kế hệ thống nguồn:<br>
+                1. Xác định các tải điện và công suất<br>
+                2. Tính toán dòng điện thiết kế<br>
+                3. Chọn kích thước dây dẫn phù hợp<br>
+                4. Thiết kế hệ thống bảo vệ (MCB, MCCB, RCD)<br>
+                5. Bố trí ổ cắm và điểm cấp điện<br>
+                6. Thiết kế hệ thống phân phối từ tủ điện chính đến các tủ phụ
+            </div>
+            
+            <h3 id="grounding">Hệ Thống Nối Đất</h3>
+            
+            <p>Hệ thống nối đất là một phần quan trọng của hệ thống điện, đảm bảo an toàn cho người sử dụng và bảo vệ thiết bị.</p>
+            
+            <div class="code-block">
+                Các bước thiết kế hệ thống nối đất:<br>
+                1. Xác định loại hệ thống nối đất (TT, TN, IT)<br>
+                2. Tính toán điện trở đất yêu cầu<br>
+                3. Thiết kế hệ thống điện cực đất<br>
+                4. Thiết kế hệ thống dây nối đất<br>
+                5. Tích hợp với hệ thống chống sét (nếu có)<br>
+                6. Thiết kế hệ thống liên kết đẳng thế
+            </div>
+            
+            <h2 id="reports">Báo Cáo và Bảng Tính</h2>
+            
+            <p>AutoCAD Electrical cung cấp nhiều công cụ để tạo báo cáo và bảng tính, giúp tổng hợp thông tin từ bản vẽ của bạn.</p>
+            
+            <div class="code-block">
+                Tạo báo cáo:<br>
+                1. Nhấp vào tab Reports<br>
+                2. Trong nhóm Schematic Reports, chọn loại báo cáo<br>
+                3. Chọn các tùy chọn báo cáo trong hộp thoại<br>
+                4. Nhấp vào Generate Report<br>
+                5. Lưu báo cáo ở định dạng mong muốn (Excel, PDF, v.v.)
+            </div>
+            
+            <p>Các loại báo cáo phổ biến:</p>
+            <ul>
+                <li>Danh sách vật tư (BOM - Bill of Materials)</li>
+                <li>Danh sách dây và cáp</li>
+                <li>Báo cáo đấu nối terminal</li>
+                <li>Báo cáo về các thành phần</li>
+                <li>Báo cáo tính toán tải điện</li>
+            </ul>
+            
+            <h2 id="projects">Dự Án Thực Hành</h2>
+            
+            <p>Thực hành là cách tốt nhất để nâng cao kỹ năng thiết kế điện. Dưới đây là một số dự án thực hành để áp dụng những kiến thức đã học.</p>
+            
+            <h3 id="project1">Dự Án 1: Thiết Kế Điện Nhà Ở</h3>
+            
+            <p>Trong dự án này, bạn sẽ thiết kế hệ thống điện cho một ngôi nhà ở, bao gồm hệ thống chiếu sáng, ổ cắm và các thiết bị điện.</p>
+            
+            <div class="code-block">
+                Các bước thực hiện:<br>
+                1. Tạo bản vẽ mặt bằng nhà<br>
+                2. Bố trí các điểm đèn, ổ cắm, công tắc và thiết bị điện<br>
+                3. Thiết kế sơ đồ nguyên lý các mạch điện<br>
+                4. Thiết kế bảng điện phân phối<br>
+                5. Tính toán tải điện và kích thước dây dẫn<br>
+                6. Tạo báo cáo vật tư và đặc tả kỹ thuật
+            </div>
+            
+            <h3 id="project2">Dự Án 2: Thiết Kế Bảng Điện Công Nghiệp</h3>
+            
+            <p>Trong dự án này, bạn sẽ thiết kế một bảng điện điều khiển cho một quy trình công nghiệp đơn giản, như hệ thống bơm nước hoặc dây chuyền sản xuất nhỏ.</p>
+            
+            <div class="code-block">
+                Các bước thực hiện:<br>
+                1. Xác định yêu cầu điều khiển và giám sát<br>
+                2. Thiết kế sơ đồ nguyên lý điều khiển<br>
+                3. Chọn các thành phần (PLC, biến tần, công tắc tơ, v.v.)<br>
+                4. Thiết kế bố trí bảng điện<br>
+                5. Tính toán kích thước tủ và hệ thống làm mát<br>
+                6. Tạo danh sách vật tư và chi tiết kỹ thuật
+            </div>
+            
+            <div class="tutorial-navigation">
+                <div class="prev-tutorial">
+                    <i class="fas fa-arrow-left"></i>
+                    <a href="3d-modeling.html">Quay lại: Mô Hình 3D</a>
+                </div>
+                <div class="next-tutorial">
+                    <a href="../index.html">Quay lại Trang Chủ</a>
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Phần chân trang -->
+    <footer class="glass-effect">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <h3>Về Chúng Tôi</h3>
+                    <p>Cổng thông tin học AutoCAD hàng đầu Việt Nam, cung cấp các khóa học chất lượng cao với nội dung được cập nhật liên tục.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Liên Kết Nhanh</h3>
+                    <ul>
+                        <li><a href="../index.html">Trang Chủ</a></li>
+                        <li><a href="2d-design.html">Thiết Kế 2D</a></li>
+                        <li><a href="3d-modeling.html">Mô Hình 3D</a></li>
+                        <li><a href="electrical.html">Thiết Kế Điện</a></li>
+                        <li><a href="../about.html">Giới Thiệu</a></li>
+                        <li><a href="../contact.html">Liên Hệ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h3>Liên Hệ</h3>
+                    <p><i class="fas fa-envelope"></i> Email: khaiduy2k2@gmail.com</p>
+                 
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/aliofficial17" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.tiktok.com/@khaiduy202" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 AliStudio. Tất cả các quyền được bảo lưu.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="../js/main.js"></script>
+    <script src="../js/loading.js"></script>
+</body>
+</html> 
