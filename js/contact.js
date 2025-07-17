@@ -1,70 +1,72 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const form = document.getElementById('contactForm');
+document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.getElementById('contactForm');
     const formStatus = document.getElementById('form-status');
+    const submitButton = contactForm.querySelector('button[type="submit"]');
 
-    // Replace with your actual Web3Forms access key
-    const accessKey = 'd0d8494c-4c6e-4b6d-a279-2c7b808945f3';
-    // Replace with your actual hCaptcha site key
-    const hcaptchaSiteKey = '50b2fe65-b00b-4b98-9520-567a5b3a3a4b';
+    if (contactForm && submitButton) {
+        submitButton.disabled = true;
 
-    const accessKeyInput = form.querySelector('input[name="access_key"]');
-    if (accessKeyInput) {
-        accessKeyInput.value = accessKey;
-    }
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            submitButton.disabled = true;
+            submitButton.textContent = 'Đang gửi...';
+            formStatus.textContent = '';
+            
+            const formData = new FormData(contactForm);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                subject: formData.get('subject'),
+                message: formData.get('message'),
+                'cf-turnstile-response': formData.get('cf-turnstile-response')
+            };
 
-    const hcaptchaDiv = form.querySelector('.h-captcha');
-    if (hcaptchaDiv) {
-        hcaptchaDiv.setAttribute('data-sitekey', hcaptchaSiteKey);
-    }
-    
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const formData = new FormData(form);
-        const object = {};
-        formData.forEach((value, key) => {
-            object[key] = value;
-        });
-        const json = JSON.stringify(object);
-        
-        formStatus.innerHTML = "Đang gửi...";
-        formStatus.style.color = "#333";
-
-        fetch('https://api.web3forms.com/submit', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: json
-        })
-        .then(async (response) => {
-            let json = await response.json();
-            if (response.status == 200) {
-                formStatus.innerHTML = json.message || "Gửi tin nhắn thành công!";
-                formStatus.style.color = "green";
-            } else {
-                console.log(response);
-                formStatus.innerHTML = json.message || "Đã có lỗi xảy ra!";
-                formStatus.style.color = "red";
+            if (!data.name || !data.email || !data.subject || !data.message || !data['cf-turnstile-response']) {
+                formStatus.textContent = 'Vui lòng điền đầy đủ thông tin và xác thực.';
+                formStatus.style.color = '#f44336';
+                submitButton.disabled = false;
+                submitButton.textContent = 'Gửi đi';
+                return;
             }
-        })
-        .catch(error => {
-            console.log(error);
-            formStatus.innerHTML = "Đã có lỗi xảy ra!";
-            formStatus.style.color = "red";
-        })
-        .then(function () {
-            form.reset();
-            // Reset hCaptcha if it's rendered
-            if (window.hcaptcha) {
-                const widgetID = hcaptchaDiv.querySelector('iframe')?.dataset.hcaptchaWidgetId;
-                if(widgetID) {
-                    window.hcaptcha.reset(widgetID);
+
+            try {
+                const response = await fetch('https://lienhe.oddtran111.workers.dev/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    formStatus.textContent = 'Gửi tin nhắn thành công! Cảm ơn bạn đã đóng góp ý kiến.';
+                    formStatus.style.color = 'green';
+                    contactForm.reset();
+                    if (window.turnstile) window.turnstile.reset();
+                    submitButton.textContent = 'Gửi đi';
+                    setTimeout(() => formStatus.textContent = '', 5000);
+                } else {
+                    formStatus.textContent = result.error || 'Xác thực thất bại. Vui lòng thử lại.';
+                    formStatus.style.color = 'red';
+                    if (window.turnstile) window.turnstile.reset();
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Gửi đi';
                 }
+            } catch (error) {
+                formStatus.textContent = 'Lỗi mạng. Vui lòng kiểm tra kết nối và thử lại.';
+                formStatus.style.color = 'red';
+                if (window.turnstile) window.turnstile.reset();
+                submitButton.disabled = false;
+                submitButton.textContent = 'Gửi đi';
             }
-            setTimeout(() => {
-                formStatus.innerHTML = '';
-            }, 5000);
         });
-    });
-}); 
+    }
+});
+
+function onTurnstileSuccess(token) {
+    const submitButton = document.querySelector('#contactForm button[type="submit"]');
+    if (submitButton) {
+        submitButton.disabled = false;
+    }
+} 
