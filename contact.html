@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Liên Hệ | Hướng Dẫn AutoCAD Online</title>
     <meta name="description" content="Liên hệ với chúng tôi - Hướng Dẫn AutoCAD Online">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/loading.css">
     <link rel="stylesheet" href="css/glass.css">
@@ -25,190 +26,89 @@
     </div>
 
     <!-- Phần header -->
-    <header class="glass-header">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <div class="logo">
-                <img src="images/logo/autocad-logo.svg" alt="Logo AutoCAD Tutorial">
-                <h1>Hướng Dẫn AutoCAD</h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Trang Chủ</a></li>
-                    <li class="dropdown">
-                        <a href="#">Khóa Học <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu glass-effect">
-                            <li><a href="tutorials/2d-design.html">Thiết Kế 2D</a></li>
-                            <li><a href="tutorials/3d-modeling.html">Mô Hình 3D</a></li>
-                            <li><a href="tutorials/electrical.html">Thiết Kế Điện</a></li>
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="images/logo/autocad-logo.svg" alt="Logo AutoCAD Tutorial" width="40" height="40" class="d-inline-block align-text-top me-2">
+                <span class="fw-bold fs-5">AutoCAD Hướng Dẫn</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Trang Chủ</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Khóa Học
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="coursesDropdown">
+                            <li><a class="dropdown-item" href="tutorials/2d-design.html">Thiết Kế 2D</a></li>
+                            <li><a class="dropdown-item" href="tutorials/3d-modeling.html">Mô Hình 3D</a></li>
+                            <li><a class="dropdown-item" href="tutorials/electrical.html">Thiết Kế Điện</a></li>
                         </ul>
                     </li>
-                    <li><a href="about.html">Giới Thiệu</a></li>
-                    <li><a href="contact.html" class="active">Liên Hệ</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">Giới Thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="contact.html">Liên Hệ</a>
+                    </li>
                 </ul>
-            </nav>
+                <div class="d-flex ms-lg-3" id="auth-container">
+                    <!-- Auth buttons here -->
+                </div>
+            </div>
         </div>
-    </header>
+    </nav>
 
     <!-- Breadcrumb -->
-    <div class="container" style="padding-top: 100px;">
-        <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Trang Chủ</a></li>
-            <li class="breadcrumb-item active">Liên Hệ</li>
-        </ul>
+    <div class="container" style="padding-top: 20px;">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Trang Chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Liên Hệ</li>
+            </ol>
+        </nav>
     </div>
 
     <!-- Phần nội dung chính -->
-    <section class="contact-section fade-in">
+    <section class="contact-section">
         <div class="container">
-            <h1 class="section-title">Liên Hệ Với Chúng Tôi</h1>
-            
-            <div class="contact-grid">
-                <!-- Form liên hệ -->
-                <div class="contact-form-container glass-effect">
-                    <h2>Gửi Tin Nhắn</h2>
-                    <form class="contact-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="name">Họ và tên</label>
-                                <input type="text" id="name" name="name" class="form-control" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" class="form-control" required>
-                            </div>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="subject">Tiêu đề</label>
-                            <input type="text" id="subject" name="subject" class="form-control" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="message">Nội dung</label>
-                            <textarea id="message" name="message" class="form-control" rows="6" required></textarea>
-                        </div>
-                        
-                        <button type="submit" class="glass-btn">Gửi Tin Nhắn</button>
-                    </form>
-                </div>
-                
-                <!-- Thông tin liên hệ -->
-                <div class="contact-info-container">
-                    <div class="contact-info glass-effect">
-                        <h2>Thông Tin Liên Hệ</h2>
-                        
-                        <div class="info-item">
-                            <div class="info-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div class="info-content">
-                                <h3>Email</h3>
-                                <p>info@autocad-tutorial.vn</p>
-                            </div>
-                        </div>
-                        
-                        <div class="info-item">
-                            <div class="info-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div class="info-content">
-                                <h3>Điện Thoại</h3>
-                                <p>0123.456.789</p>
-                            </div>
-                        </div>
-                        
-                        <div class="info-item">
-                            <div class="info-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div class="info-content">
-                                <h3>Địa Chỉ</h3>
-                                <p>123 Đường ABC, Quận XYZ<br>Thành phố Hồ Chí Minh, Việt Nam</p>
-                            </div>
-                        </div>
-                        
-                        <div class="info-item">
-                            <div class="info-icon">
-                                <i class="fas fa-clock"></i>
-                            </div>
-                            <div class="info-content">
-                                <h3>Giờ Làm Việc</h3>
-                                <p>Thứ Hai - Thứ Sáu: 9:00 - 17:00<br>Thứ Bảy, Chủ Nhật: Nghỉ</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="social-connect glass-effect">
-                        <h2>Kết Nối Với Chúng Tôi</h2>
-                        <div class="large-social-links">
-                            <a href="#" class="large-social-icon">
-                                <i class="fab fa-facebook-f"></i>
-                                <span>Facebook</span>
-                            </a>
-                            <a href="#" class="large-social-icon">
-                                <i class="fab fa-youtube"></i>
-                                <span>YouTube</span>
-                            </a>
-                            <a href="#" class="large-social-icon">
-                                <i class="fab fa-linkedin-in"></i>
-                                <span>LinkedIn</span>
-                            </a>
-                        </div>
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="bg-surface p-5 rounded h-100">
+                        <h1 class="text-white">Liên Hệ Với Chúng Tôi</h1>
+                        <p>Nếu bạn có bất kỳ câu hỏi, góp ý, hoặc mong muốn hợp tác, đừng ngần ngại liên hệ với chúng tôi. Chúng tôi luôn sẵn lòng lắng nghe.</p>
+                        <hr class="my-4">
+                        <h4 class="text-primary">Thông tin liên hệ</h4>
+                        <p><i class="fas fa-envelope me-3"></i> khaiduy2k2@gmail.com</p>
+                        <p><i class="fas fa-phone me-3"></i> +84 123 456 789</p>
+                        <h4 class="text-primary mt-4">Mạng xã hội</h4>
+                        <a href="https://www.facebook.com/aliofficial17" class="btn btn-outline-light me-2"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        <a href="https://www.tiktok.com/@khaiduy202" class="btn btn-outline-light"><i class="fab fa-tiktok"></i> TikTok</a>
                     </div>
                 </div>
-            </div>
-            
-            <div class="map-container glass-effect fade-in">
-                <h2>Bản Đồ</h2>
-                <div class="map-frame">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d125412.59255857428!2d106.64345489805524!3d10.802752705466977!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529292e8d3dd1%3A0xf15f5aad773c112b!2sH%E1%BB%93%20Ch%C3%AD%20Minh%2C%20Th%C3%A0nh%20ph%E1%BB%91%20H%E1%BB%93%20Ch%C3%AD%20Minh!5e0!3m2!1svi!2s!4v1652345677192!5m2!1svi!2s" 
-                            width="100%" height="400" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                </div>
-            </div>
-            
-            <div class="faq-section glass-effect fade-in">
-                <h2>Câu Hỏi Thường Gặp</h2>
-                
-                <div class="accordion">
-                    <div class="accordion-item">
-                        <div class="accordion-header">
-                            <h3>Tài liệu học AutoCAD có hoàn toàn miễn phí không?</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="accordion-content">
-                            <p>Có, tất cả các tài liệu học AutoCAD trên website của chúng tôi đều hoàn toàn miễn phí. Chúng tôi tin rằng kiến thức nên được chia sẻ rộng rãi để mọi người có cơ hội tiếp cận và học tập.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="accordion-item">
-                        <div class="accordion-header">
-                            <h3>Tôi cần phần mềm gì để học theo các hướng dẫn của website?</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="accordion-content">
-                            <p>Bạn cần cài đặt phần mềm AutoCAD để thực hành theo các bài học. Autodesk cung cấp phiên bản dùng thử 30 ngày và phiên bản dành cho sinh viên/giáo viên hoàn toàn miễn phí trong 3 năm.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="accordion-item">
-                        <div class="accordion-header">
-                            <h3>Làm thế nào để nhận chứng chỉ hoàn thành khóa học?</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="accordion-content">
-                            <p>Sau khi hoàn thành các bài học và bài kiểm tra của một khóa học, hệ thống sẽ tự động cấp chứng chỉ điện tử cho bạn. Bạn có thể tải về và sử dụng chứng chỉ này để bổ sung vào hồ sơ chuyên môn của mình.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="accordion-item">
-                        <div class="accordion-header">
-                            <h3>Tôi có thể đóng góp nội dung cho website không?</h3>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="accordion-content">
-                            <p>Chúng tôi luôn hoan nghênh sự đóng góp từ cộng đồng. Nếu bạn có kiến thức chuyên môn về AutoCAD và muốn chia sẻ nội dung, vui lòng liên hệ với chúng tôi qua email để thảo luận về cơ hội hợp tác.</p>
-                        </div>
+                <div class="col-lg-6">
+                    <div class="bg-surface p-5 rounded h-100">
+                        <h2 class="text-white">Gửi Tin Nhắn</h2>
+                        <form id="contactForm" class="mt-4">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">Họ và Tên</label>
+                                <input type="text" class="form-control" id="name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="message" class="form-label">Nội dung</label>
+                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Gửi Tin Nhắn</button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -216,42 +116,13 @@
     </section>
 
     <!-- Phần chân trang -->
-    <footer class="glass-effect">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-about">
-                    <h3>Về Chúng Tôi</h3>
-                    <p>Cổng thông tin học AutoCAD hàng đầu Việt Nam, cung cấp các khóa học chất lượng cao với nội dung được cập nhật liên tục.</p>
-                </div>
-                <div class="footer-links">
-                    <h3>Liên Kết Nhanh</h3>
-                    <ul>
-                        <li><a href="index.html">Trang Chủ</a></li>
-                        <li><a href="tutorials/2d-design.html">Thiết Kế 2D</a></li>
-                        <li><a href="tutorials/3d-modeling.html">Mô Hình 3D</a></li>
-                        <li><a href="tutorials/electrical.html">Thiết Kế Điện</a></li>
-                        <li><a href="about.html">Giới Thiệu</a></li>
-                        <li><a href="contact.html">Liên Hệ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h3>Liên Hệ</h3>
-                    <p><i class="fas fa-envelope"></i> Email: khaiduy2k2@gmail.com</p>
-                 
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/aliofficial17" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.tiktok.com/@khaiduy202" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 AliStudio. Tất cả các quyền được bảo lưu.</p>
-            </div>
-        </div>
+    <footer class="pt-5 pb-4 mt-5">
+        <!-- Footer content from index.html -->
     </footer>
 
     <script src="js/main.js"></script>
     <script src="js/loading.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         // JavaScript cho accordion
         document.addEventListener('DOMContentLoaded', function() {

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Giới Thiệu | Hướng Dẫn AutoCAD Online</title>
     <meta name="description" content="Thông tin về dự án Hướng Dẫn AutoCAD Online - Đội ngũ phát triển và mục tiêu của chúng tôi">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/loading.css">
     <link rel="stylesheet" href="css/glass.css">
@@ -25,143 +26,78 @@
     </div>
 
     <!-- Phần header -->
-    <header class="glass-header">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container">
-            <div class="logo">
-                <img src="images/logo/autocad-logo.svg" alt="Logo AutoCAD Tutorial">
-                <h1>Hướng Dẫn AutoCAD</h1>
-            </div>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Trang Chủ</a></li>
-                    <li class="dropdown">
-                        <a href="#">Khóa Học <i class="fas fa-chevron-down"></i></a>
-                        <ul class="dropdown-menu glass-effect">
-                            <li><a href="tutorials/2d-design.html">Thiết Kế 2D</a></li>
-                            <li><a href="tutorials/3d-modeling.html">Mô Hình 3D</a></li>
-                            <li><a href="tutorials/electrical.html">Thiết Kế Điện</a></li>
+            <a class="navbar-brand d-flex align-items-center" href="index.html">
+                <img src="images/logo/autocad-logo.svg" alt="Logo AutoCAD Tutorial" width="40" height="40" class="d-inline-block align-text-top me-2">
+                <span class="fw-bold fs-5">AutoCAD Hướng Dẫn</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Trang Chủ</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Khóa Học
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="coursesDropdown">
+                            <li><a class="dropdown-item" href="tutorials/2d-design.html">Thiết Kế 2D</a></li>
+                            <li><a class="dropdown-item" href="tutorials/3d-modeling.html">Mô Hình 3D</a></li>
+                            <li><a class="dropdown-item" href="tutorials/electrical.html">Thiết Kế Điện</a></li>
                         </ul>
                     </li>
-                    <li><a href="about.html" class="active">Giới Thiệu</a></li>
-                    <li><a href="contact.html">Liên Hệ</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="about.html">Giới Thiệu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Liên Hệ</a>
+                    </li>
                 </ul>
-            </nav>
+                <div class="d-flex ms-lg-3" id="auth-container">
+                    <!-- Auth buttons here -->
+                </div>
+            </div>
         </div>
-    </header>
+    </nav>
 
     <!-- Breadcrumb -->
-    <div class="container" style="padding-top: 100px;">
-        <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">Trang Chủ</a></li>
-            <li class="breadcrumb-item active">Giới Thiệu</li>
-        </ul>
+    <div class="container" style="padding-top: 20px;">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index.html">Trang Chủ</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Giới Thiệu</li>
+            </ol>
+        </nav>
     </div>
 
     <!-- Phần nội dung chính -->
-    <section class="about-section fade-in">
-        <div class="container glass-effect">
-            <h1>Giới Thiệu Về Chúng Tôi</h1>
+    <section class="about-section">
+        <div class="container bg-surface p-5 rounded">
+            <h1 class="text-white">Giới Thiệu Về Chúng Tôi</h1>
 
             <div class="about-content">
                 <p>Hướng Dẫn AutoCAD là một dự án giáo dục trực tuyến với mục tiêu cung cấp các tài liệu học tập chất lượng cao về AutoCAD cho người học Việt Nam. Dự án được phát triển với mong muốn giúp người học tiếp cận với công nghệ thiết kế hiện đại một cách dễ dàng và hiệu quả.</p>
 
                 <p>Chúng tôi cung cấp các khóa học về thiết kế 2D, mô hình 3D và thiết kế điện với AutoCAD, được biên soạn bởi các chuyên gia có nhiều năm kinh nghiệm trong lĩnh vực. Các bài giảng được thiết kế dễ hiểu, từ cơ bản đến nâng cao, phù hợp với mọi đối tượng từ người mới bắt đầu đến người đã có kinh nghiệm.</p>
 
-                <h2>Sứ Mệnh Của Chúng Tôi</h2>
+                <h2 class="mt-5 text-white">Sứ Mệnh Của Chúng Tôi</h2>
 
                 <p>Sứ mệnh của chúng tôi là mang đến kiến thức thiết kế với AutoCAD cho mọi người một cách dễ dàng, hiệu quả và hoàn toàn miễn phí. Chúng tôi tin rằng kiến thức nên được chia sẻ rộng rãi, và mọi người đều có quyền tiếp cận với các tài liệu học tập chất lượng cao.</p>
-
-                <div class="vision-mission glass-effect">
-                    <div class="vision">
-                        <h3><i class="fas fa-eye"></i> Tầm nhìn</h3>
-                        <p>Trở thành nguồn tài liệu học AutoCAD hàng đầu bằng tiếng Việt, giúp nâng cao trình độ chuyên môn cho các kỹ sư, kiến trúc sư và nhà thiết kế Việt Nam.</p>
-                    </div>
-                    <div class="mission">
-                        <h3><i class="fas fa-bullseye"></i> Sứ mệnh</h3>
-                        <p>Cung cấp nội dung giáo dục chất lượng cao về AutoCAD, phù hợp với nhu cầu học tập của người Việt và thị trường lao động.</p>
-                    </div>
-                </div>
-
-                <h2>Đội Ngũ Phát Triển</h2>
-                
-                <div class="team-grid">
-                    <div class="team-member glass-effect">
-                        <img src="images/team/team-member-1.jpg" alt="Giảng viên thiết kế 2D">
-                        <h3>Nguyễn Văn A</h3>
-                        <p>Chuyên gia thiết kế 2D<br>12 năm kinh nghiệm</p>
-                    </div>
-                    <div class="team-member glass-effect">
-                        <img src="images/team/team-member-2.jpg" alt="Giảng viên mô hình 3D">
-                        <h3>Trần Thị B</h3>
-                        <p>Chuyên gia mô hình 3D<br>10 năm kinh nghiệm</p>
-                    </div>
-                    <div class="team-member glass-effect">
-                        <img src="images/team/team-member-3.jpg" alt="Giảng viên thiết kế điện">
-                        <h3>Lê Văn C</h3>
-                        <p>Chuyên gia thiết kế điện<br>15 năm kinh nghiệm</p>
-                    </div>
-                    <div class="team-member glass-effect">
-                        <img src="images/team/team-member-4.jpg" alt="Quản trị viên">
-                        <h3>Phạm Thị D</h3>
-                        <p>Quản trị viên<br>Điều phối nội dung</p>
-                    </div>
-                </div>
-
-                <h2>Công Nghệ Sử Dụng</h2>
-
-                <p>Website của chúng tôi được phát triển sử dụng các công nghệ web hiện đại, đảm bảo trải nghiệm người dùng tốt nhất:</p>
-
-                <ul class="tech-list">
-                    <li><i class="fab fa-html5"></i> HTML5 - Cấu trúc nội dung</li>
-                    <li><i class="fab fa-css3-alt"></i> CSS3 - Định dạng và hiệu ứng</li>
-                    <li><i class="fab fa-js"></i> JavaScript - Tương tác và animation</li>
-                    <li><i class="fas fa-mobile-alt"></i> Responsive Design - Tương thích mọi thiết bị</li>
-                    <li><i class="fab fa-github"></i> GitHub Pages - Lưu trữ và triển khai</li>
-                </ul>
-
-                <h2>Đối Tác Và Hợp Tác</h2>
-
-                <p>Chúng tôi luôn mở rộng cơ hội hợp tác với các cá nhân và tổ chức có chung tầm nhìn về việc phát triển giáo dục và đào tạo công nghệ tại Việt Nam. Nếu bạn quan tâm đến việc hợp tác, xin vui lòng liên hệ với chúng tôi qua trang Liên Hệ.</p>
             </div>
         </div>
     </section>
 
     <!-- Phần chân trang -->
-    <footer class="glass-effect">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-about">
-                    <h3>Về Chúng Tôi</h3>
-                    <p>Cổng thông tin học AutoCAD hàng đầu Việt Nam, cung cấp các khóa học chất lượng cao với nội dung được cập nhật liên tục.</p>
-                </div>
-                <div class="footer-links">
-                    <h3>Liên Kết Nhanh</h3>
-                    <ul>
-                        <li><a href="index.html">Trang Chủ</a></li>
-                        <li><a href="tutorials/2d-design.html">Thiết Kế 2D</a></li>
-                        <li><a href="tutorials/3d-modeling.html">Mô Hình 3D</a></li>
-                        <li><a href="tutorials/electrical.html">Thiết Kế Điện</a></li>
-                        <li><a href="about.html">Giới Thiệu</a></li>
-                        <li><a href="contact.html">Liên Hệ</a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h3>Liên Hệ</h3>
-                    <p><i class="fas fa-envelope"></i> Email: khaiduy2k2@gmail.com</p>
-                 
-                    <div class="social-links">
-                        <a href="https://www.facebook.com/aliofficial17" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
-                        <a href="https://www.tiktok.com/@khaiduy202" target="_blank" class="social-icon"><i class="fab fa-tiktok"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 AliStudio. Tất cả các quyền được bảo lưu.</p>
-            </div>
-        </div>
+    <footer class="pt-5 pb-4">
+        <!-- Footer content from index.html -->
     </footer>
 
     <script src="js/main.js"></script>
     <script src="js/loading.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html> 

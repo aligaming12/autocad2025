@@ -3,70 +3,71 @@ document.addEventListener('DOMContentLoaded', function() {
     // Logo SVG path
     const logoSvg = document.getElementById('logo-svg');
     
-    // Tạo logo AutoCAD đơn giản (hình tượng trưng)
     if (logoSvg) {
         logoSvg.innerHTML = `
-            <path d="M50,40 L50,160 L150,160 L150,40 Z M50,40 L100,20 L200,20 L150,40 Z M150,40 L200,20 L200,140 L150,160 Z" 
-                  fill="none" 
-                  stroke="#0078d7" 
-                  stroke-width="4"/>
-            <path d="M75,80 L125,80 M75,120 L125,120" 
-                  fill="none" 
-                  stroke="#00a2ff" 
-                  stroke-width="3"/>
-            <text x="100" y="100" 
-                  text-anchor="middle" 
-                  fill="#ffffff" 
-                  font-family="Arial" 
-                  font-size="16" 
-                  font-weight="bold">AutoCAD</text>
+            <g>
+                <path class="shape shape1" d="M100,25 A75,75 0 0,1 175,100"></path>
+                <path class="shape shape2" d="M175,100 A75,75 0 0,1 100,175"></path>
+                <path class="shape shape3" d="M100,175 A75,75 0 0,1 25,100"></path>
+                <path class="shape shape4" d="M25,100 A75,75 0 0,1 100,25"></path>
+            </g>
         `;
     }
 
-    // Loading progress
+    // Loading progress simulation
     let progress = 0;
     const progressBar = document.querySelector('.progress');
     const loadingScreen = document.getElementById('loading-screen');
-    const fadeElements = document.querySelectorAll('.fade-in');
-    
-    // Giả lập tiến trình tải
-    const interval = setInterval(() => {
-        progress += Math.random() * 3;
-        if (progress >= 100) {
-            progress = 100;
-            clearInterval(interval);
-            
-            // Hoàn thành loading
-            setTimeout(() => {
-                loadingScreen.classList.add('fade-out');
+    const content = document.querySelector('body > *:not(#loading-screen)');
+
+    if (progressBar && loadingScreen) {
+        const interval = setInterval(() => {
+            progress += Math.random() * 5;
+            if (progress >= 100) {
+                progress = 100;
+                progressBar.style.width = progress + '%';
+                clearInterval(interval);
                 
-                // Hiển thị các phần tử trên trang với hiệu ứng tuần tự
                 setTimeout(() => {
-                    fadeElements.forEach(element => {
-                        element.classList.add('active');
-                    });
+                    loadingScreen.classList.add('fade-out');
                 }, 500);
-            }, 500);
-        }
-        
-        progressBar.style.width = progress + '%';
-    }, 100);
-
-    // Xử lý hiệu ứng hiển thị khi scroll
-    const handleScrollAnimation = () => {
-        const triggerBottom = window.innerHeight * 0.8;
-        
-        fadeElements.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top;
-            if (elementTop < triggerBottom) {
-                element.classList.add('active');
             }
-        });
-    };
+            progressBar.style.width = progress + '%';
+        }, 80);
+    }
+});
 
-    // Thêm event listener cho scroll để kích hoạt hiệu ứng hiển thị
-    window.addEventListener('scroll', handleScrollAnimation);
-    
-    // Kích hoạt hiệu ứng cho các phần tử ban đầu trong viewport
-    setTimeout(handleScrollAnimation, 1000);
-}); 
+// Auth Status UI
+function updateAuthUI(user) {
+    const authContainer = document.getElementById('auth-container');
+    if (authContainer) {
+        if (user) {
+            let avatar = user.photoURL ? `<img src="${user.photoURL}" class="rounded-circle" alt="${user.displayName}" width="30" height="30">` : `<div class="avatar-placeholder">${user.displayName.charAt(0)}</div>`;
+            
+            let adminMenu = '';
+            if (user.role === 'admin') {
+                adminMenu = `<li><a class="dropdown-item" href="/admin/dashboard.html">Trang Admin</a></li><li><hr class="dropdown-divider"></li>`;
+            }
+
+            authContainer.innerHTML = `
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="userDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                        ${avatar}
+                        <span class="d-none d-sm-inline mx-1">${user.displayName}</span>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="userDropdown">
+                        ${adminMenu}
+                        <li><a class="dropdown-item" href="#">Hồ Sơ</a></li>
+                        <li><a class="dropdown-item" href="#">Cài Đặt</a></li>
+                        <li><a class="dropdown-item" id="logout-btn">Đăng xuất</a></li>
+                    </ul>
+                </div>
+            `;
+        } else {
+            authContainer.innerHTML = `
+                <button class="btn btn-outline-light me-2" id="login-btn">Đăng Nhập</button>
+                <button class="btn btn-primary" id="signup-btn">Đăng Ký</button>
+            `;
+        }
+    }
+} 

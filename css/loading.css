@@ -5,66 +5,78 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(135deg, #0c2744 0%, #092039 100%);
+    background: #111;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    transition: opacity 0.5s ease, transform 0.5s ease;
+    transition: opacity 1s ease, visibility 1s ease;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 #loading-screen.fade-out {
     opacity: 0;
-    pointer-events: none;
-    transform: translateY(-100%);
+    visibility: hidden;
 }
 
 .logo-container {
-    margin-bottom: 30px;
-    text-align: center;
+    position: relative;
+    width: 150px;
+    height: 150px;
 }
 
 #logo-svg {
-    width: 200px;
-    height: 200px;
+    width: 100%;
+    height: 100%;
+    animation: rotate-logo 10s linear infinite;
 }
 
-#logo-svg path {
-    stroke-dasharray: 1000;
-    stroke-dashoffset: 1000;
-    fill-opacity: 0;
-    animation: draw-logo 3s forwards, fill-logo 2s 1.5s forwards;
+@keyframes rotate-logo {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
-@keyframes draw-logo {
+#logo-svg .shape {
+    stroke-width: 5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+    stroke-dasharray: 500;
+    stroke-dashoffset: 500;
+    animation: draw 3s ease-in-out forwards;
+}
+
+#logo-svg .shape1 { stroke: #00a2ff; animation-delay: 0s; }
+#logo-svg .shape2 { stroke: #00d2ff; animation-delay: 0.5s; }
+#logo-svg .shape3 { stroke: #0078d7; animation-delay: 1s; }
+#logo-svg .shape4 { stroke: #00a2ff; animation-delay: 1.5s; }
+
+@keyframes draw {
     to {
         stroke-dashoffset: 0;
     }
 }
 
-@keyframes fill-logo {
-    to {
-        fill-opacity: 1;
-    }
-}
-
 .progress-bar {
-    width: 300px;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 3px;
+    width: 250px;
+    height: 4px;
+    background-color: #333;
+    border-radius: 2px;
+    margin-top: 30px;
     overflow: hidden;
-    position: relative;
 }
 
 .progress {
-    height: 100%;
-    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
     width: 0%;
-    border-radius: 3px;
-    transition: width 0.5s ease;
-    position: relative;
+    height: 100%;
+    background: linear-gradient(90deg, #0078d7, #00d2ff);
+    transition: width 0.3s ease;
 }
 
 .progress::after {
@@ -85,6 +97,13 @@
     100% {
         transform: translateX(100%);
     }
+}
+
+.loading-text {
+    color: #888;
+    margin-top: 20px;
+    font-size: 1rem;
+    letter-spacing: 1px;
 }
 
 /* Content Animation */
