@@ -1,35 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const themeSwitch = document.getElementById('theme-switch');
-    const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const themeIcon = themeToggle.querySelector('i');
 
-    if (currentTheme) {
-        document.body.classList.add(currentTheme);
-        if (currentTheme === 'light-mode') {
-            themeSwitch.checked = true;
-        }
-    }
-
-    themeSwitch.addEventListener('change', function(e) {
-        if (e.target.checked) {
-            document.body.classList.remove('dark-mode');
-            document.body.classList.add('light-mode');
-            localStorage.setItem('theme', 'light-mode');
+    // Function to apply the saved theme
+    const applyTheme = (theme) => {
+        if (theme === 'dark') {
+            body.classList.add('dark-mode');
+            themeIcon.classList.remove('fa-moon');
+            themeIcon.classList.add('fa-sun');
         } else {
-            document.body.classList.remove('light-mode');
-            document.body.classList.add('dark-mode');
-            localStorage.setItem('theme', 'dark-mode');
+            body.classList.remove('dark-mode');
+            themeIcon.classList.remove('fa-sun');
+            themeIcon.classList.add('fa-moon');
+        }
+    };
+
+    // Check for saved theme in localStorage
+    const savedTheme = localStorage.getItem('theme') || 'light';
+    applyTheme(savedTheme);
+
+    // Event listener for the theme toggle button
+    themeToggle.addEventListener('click', () => {
+        const isDarkMode = body.classList.contains('dark-mode');
+        if (isDarkMode) {
+            localStorage.setItem('theme', 'light');
+            applyTheme('light');
+        } else {
+            localStorage.setItem('theme', 'dark');
+            applyTheme('dark');
         }
     });
-
-    // Animation on Scroll
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('show');
-            }
-        });
-    });
-
-    const hiddenElements = document.querySelectorAll('.fade-in-scroll');
-    hiddenElements.forEach((el) => observer.observe(el));
 }); 

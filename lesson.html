@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài học AutoCAD</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/lesson.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-overlay">
+        <div class="loader"></div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">AutoCAD Learning</a>
+            <ul>
+                <li><a href="index.html">Trang Chủ</a></li>
+                <li><a href="tutorials.html" class="active">Hướng Dẫn</a></li>
+                <li><a href="exercises.html">Bài Tập</a></li>
+                <li><a href="about.html">Giới Thiệu</a></li>
+                <li><a href="contact.html">Liên Hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="lesson-page-container">
+        <main id="lesson-content">
+            <!-- Nội dung bài học sẽ được tải vào đây bằng JS -->
+            <h1 id="lesson-title"></h1>
+            <p id="lesson-description"></p>
+            <div id="video-player-container">
+                <!-- Video player is loaded here by JS -->
+            </div>
+            <div class="video-progress-container">
+                <div id="video-progress-bar"></div>
+            </div>
+            <hr>
+            <div id="text-content" class="markdown-body"></div>
+        </main>
+
+        <aside id="lesson-sidebar">
+            <h3>Danh sách bài học</h3>
+            <ul id="lesson-list">
+                <!-- Lesson list will be populated by JS -->
+            </ul>
+        </aside>
+    </div>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 AutoCAD Learning By AliStudio. Mọi quyền được bảo lưu.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/lesson.js"></script>
+</body>
+</html> 

@@ -1,82 +1,82 @@
-/* Loading Screen Styles */
-#loading-screen {
+/* --- Loading Screen --- */
+#loading-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: #111;
+    background-color: var(--background-color);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    transition: opacity 1s ease, visibility 1s ease;
+    transition: opacity 0.5s ease;
 }
 
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-#loading-screen.fade-out {
+#loading-overlay.hidden {
     opacity: 0;
-    visibility: hidden;
+    pointer-events: none;
+}
+
+.loader {
+    border: 8px solid var(--secondary-color);
+    border-top: 8px solid var(--primary-color);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .logo-container {
-    position: relative;
-    width: 150px;
-    height: 150px;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
 #logo-svg {
-    width: 100%;
-    height: 100%;
-    animation: rotate-logo 10s linear infinite;
+    width: 200px;
+    height: 200px;
 }
 
-@keyframes rotate-logo {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+#logo-svg path {
+    stroke-dasharray: 1000;
+    stroke-dashoffset: 1000;
+    fill-opacity: 0;
+    animation: draw-logo 3s forwards, fill-logo 2s 1.5s forwards;
 }
 
-#logo-svg .shape {
-    stroke-width: 5;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    fill: none;
-    stroke-dasharray: 500;
-    stroke-dashoffset: 500;
-    animation: draw 3s ease-in-out forwards;
-}
-
-#logo-svg .shape1 { stroke: #00a2ff; animation-delay: 0s; }
-#logo-svg .shape2 { stroke: #00d2ff; animation-delay: 0.5s; }
-#logo-svg .shape3 { stroke: #0078d7; animation-delay: 1s; }
-#logo-svg .shape4 { stroke: #00a2ff; animation-delay: 1.5s; }
-
-@keyframes draw {
+@keyframes draw-logo {
     to {
         stroke-dashoffset: 0;
     }
 }
 
+@keyframes fill-logo {
+    to {
+        fill-opacity: 1;
+    }
+}
+
 .progress-bar {
-    width: 250px;
-    height: 4px;
-    background-color: #333;
-    border-radius: 2px;
-    margin-top: 30px;
+    width: 300px;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
     overflow: hidden;
+    position: relative;
 }
 
 .progress {
-    width: 0%;
     height: 100%;
-    background: linear-gradient(90deg, #0078d7, #00d2ff);
-    transition: width 0.3s ease;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    width: 0%;
+    border-radius: 3px;
+    transition: width 0.5s ease;
+    position: relative;
 }
 
 .progress::after {
@@ -97,13 +97,6 @@
     100% {
         transform: translateX(100%);
     }
-}
-
-.loading-text {
-    color: #888;
-    margin-top: 20px;
-    font-size: 1rem;
-    letter-spacing: 1px;
 }
 
 /* Content Animation */

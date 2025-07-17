@@ -1,0 +1,396 @@
+/* --- Tutorial Page Layout --- */
+.tutorial-layout {
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 2rem;
+    padding-top: 2rem;
+    align-items: flex-start;
+}
+
+#tutorial-sidebar {
+    position: sticky;
+    top: 100px; /* Should be slightly more than header height */
+    height: calc(100vh - 120px);
+}
+
+.sidebar-sticky-content {
+    height: 100%;
+    overflow-y: auto;
+    background-color: var(--secondary-color);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+}
+
+.search-container {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.search-container i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-color);
+}
+
+#search-input {
+    width: 100%;
+    padding: 0.8rem 1rem 0.8rem 2.5rem; /* Add padding for the icon */
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+#category-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.filter-btn {
+    background-color: var(--secondary-bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    padding: 8px 12px;
+    border-radius: 20px; /* Pill shape */
+    cursor: pointer;
+    font-size: 0.9em;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover {
+    background-color: var(--accent-color);
+    color: #fff;
+    border-color: var(--accent-color);
+}
+
+.filter-btn.active {
+    background-color: var(--accent-color);
+    color: #fff;
+    border-color: var(--accent-color);
+    font-weight: bold;
+}
+
+
+#tutorial-menu {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+#tutorial-menu li:first-child .menu-category-title {
+    margin-top: 0;
+}
+
+#tutorial-menu li a {
+    display: block;
+    padding: 0.8rem 1rem;
+    border-radius: var(--border-radius);
+    color: var(--text-color);
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    transition: background-color var(--transition-speed);
+}
+
+#tutorial-menu li a:hover {
+    background-color: #e0e0e0;
+    color: var(--heading-color);
+}
+
+#tutorial-menu li a.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+#tutorial-menu a.active {
+    color: var(--accent-color);
+    font-weight: bold;
+}
+
+#tutorial-menu a.completed::after {
+    content: '✔';
+    color: #4CAF50; /* Green checkmark */
+    margin-left: 8px;
+    font-weight: bold;
+}
+
+#tutorial-content {
+    padding-bottom: 2rem;
+}
+
+#video-player-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    background-color: #000;
+    border-radius: var(--border-radius);
+}
+
+#video-player-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#tutorial-title {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    margin-top: 0;
+    color: var(--text-color);
+}
+
+.text-content-container {
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e0e0e0;
+    line-height: 1.7;
+}
+
+.text-content-container h3 {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+
+.text-content-container p {
+    margin-bottom: 1rem;
+}
+
+.text-content-container ul {
+    list-style: disc;
+    padding-left: 2rem;
+    margin-bottom: 1rem;
+}
+
+.text-content-container code {
+    background-color: var(--secondary-color);
+    padding: 0.2em 0.4em;
+    margin: 0;
+    font-size: 85%;
+    border-radius: 6px;
+}
+
+.main-content {
+    flex-grow: 1;
+    padding: 20px;
+}
+
+.tutorial-content {
+    margin-top: 20px;
+}
+
+#completion-toggle-btn {
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+}
+
+#completion-toggle-btn.completed {
+    background-color: #4CAF50; /* Green */
+}
+
+#completion-toggle-btn:hover {
+    background-color: #0056b3;
+}
+
+#completion-toggle-btn.completed:hover {
+    background-color: #45a049;
+}
+
+
+/* --- Responsive Design for Tutorials Page --- */
+@media (max-width: 992px) {
+    .tutorial-layout {
+        grid-template-columns: 1fr;
+    }
+
+    #tutorial-sidebar {
+        position: static;
+        height: auto;
+        margin-bottom: 2rem;
+    }
+} 
+
+.tutorial-container {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.sidebar {
+    flex: 0 0 280px; /* Sidebar width */
+    background-color: var(--secondary-bg-color);
+    padding: 20px;
+    border-radius: 8px;
+    align-self: flex-start; /* Stick to top */
+}
+
+.search-and-filter h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.4em;
+    color: var(--text-color);
+}
+
+
+.main-content {
+    flex-grow: 1;
+}
+
+#tutorial-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+.tutorial-card {
+    position: relative; /* Needed for absolute positioning of the button */
+    background-color: var(--secondary-bg-color);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+}
+
+.tutorial-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+}
+
+.tutorial-card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.tutorial-card-content {
+    padding: 15px;
+}
+
+.tutorial-card-content h3 {
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+    color: var(--text-color);
+}
+
+.tutorial-card-content p {
+    font-size: 0.9em;
+    color: var(--secondary-text-color);
+    line-height: 1.5;
+}
+
+.tutorial-viewer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+#video-player-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    background-color: #000;
+}
+
+#video-player-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+#back-to-grid-btn {
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+    align-self: flex-start;
+}
+
+#back-to-grid-btn:hover {
+    background-color: #0056b3;
+}
+
+.hidden {
+    display: none;
+}
+
+.tutorial-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-top: 15px;
+}
+
+#favorite-toggle-btn {
+    background-color: transparent;
+    border: 1px solid #ffc107;
+    color: #ffc107;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#favorite-toggle-btn.favorited, #favorite-toggle-btn:hover {
+    background-color: #ffc107;
+    color: #000;
+}
+
+.tutorial-card .favorite-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    opacity: 0; /* Hidden by default */
+}
+
+.tutorial-card:hover .favorite-btn {
+    opacity: 1; /* Show on hover */
+}
+
+.tutorial-card.completed {
+    border-left: 5px solid var(--primary-color);
+}
+
+.tutorial-card .favorite-btn.favorited {
+    background: #ffc107;
+    color: #000;
+    opacity: 1;
+}

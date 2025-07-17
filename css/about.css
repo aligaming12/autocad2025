@@ -1,0 +1,58 @@
+#about-page {
+    padding-top: 2rem;
+    padding-bottom: 4rem;
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.about-header h1 {
+    font-size: 2.8rem;
+}
+
+.about-header .subtitle {
+    font-size: 1.2rem;
+    color: var(--text-color);
+    max-width: 700px;
+    margin: 0.5rem auto 0;
+}
+
+.about-content {
+    display: block;
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.about-text.full-width {
+    width: 100%;
+}
+
+.about-text h2 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.about-text ul {
+    list-style: disc;
+    padding-left: 1.5rem;
+}
+
+.about-text ul li {
+    margin-bottom: 0.8rem;
+}
+
+/* Removed about-image styles since we no longer have the image */
+
+@media (max-width: 992px) {
+    .about-header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .about-text h2 {
+        font-size: 1.5rem;
+    }
+} 

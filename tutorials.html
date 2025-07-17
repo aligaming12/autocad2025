@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hướng Dẫn - AutoCAD Learning</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/tutorials.css"> 
+    <link rel="stylesheet" href="css/loading.css">
+    <script>
+        // Ensure loading overlay is hidden when page loads
+        window.addEventListener('load', function() {
+            const loadingOverlay = document.getElementById('loading-overlay');
+            if (loadingOverlay) {
+                setTimeout(function() {
+                    loadingOverlay.classList.add('hidden');
+                }, 200);
+            }
+        });
+    </script>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div id="loading-overlay">
+        <div class="loader"></div>
+    </div>
+
+    <header>
+        <nav class="container">
+            <a href="index.html" class="logo">AutoCAD Learning</a>
+            <ul>
+                <li><a href="index.html">Trang Chủ</a></li>
+                <li><a href="tutorials.html" class="active">Hướng Dẫn</a></li>
+                <li><a href="about.html">Giới Thiệu</a></li>
+                <li><a href="contact.html">Liên Hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container tutorial-container">
+        <aside class="sidebar">
+            <div class="search-and-filter">
+                <h2>Tìm kiếm & Lọc</h2>
+                <input type="text" id="search-input" placeholder="Tìm kiếm bài học...">
+                <div id="category-filters">
+                    <!-- Các nút lọc sẽ được thêm vào đây bằng JS -->
+                </div>
+            </div>
+        </aside>
+        
+        <main class="main-content">
+            <div id="tutorial-grid">
+                <!-- Các thẻ bài học sẽ được thêm vào đây bằng JS -->
+            </div>
+            
+            <div id="tutorial-detail-view" class="hidden">
+                <button id="back-to-grid-btn">&larr; Quay lại danh sách</button>
+                <div class="tutorial-viewer">
+                    <div id="video-player-container">
+                        <!-- Video player sẽ được nhúng ở đây -->
+                    </div>
+                    <div class="tutorial-content">
+                        <h2 id="tutorial-title"></h2>
+                        <p id="tutorial-description"></p>
+                        <div class="tutorial-actions">
+                            <button id="completion-toggle-btn">Đánh dấu đã hoàn thành</button>
+                            <button id="favorite-toggle-btn">⭐ Yêu thích</button>
+                        </div>
+                        <hr>
+                        <div id="tutorial-text-content" class="markdown-body"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 AutoCAD Learning By AliStudio. Mọi quyền được bảo lưu.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="js/database.js"></script>
+    <script src="js/tutorials.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html> 
